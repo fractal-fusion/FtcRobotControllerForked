@@ -9,7 +9,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@Disabled
 @Autonomous(name="Left Side Auto", group="Robot")
 public class autoLeftOdometry extends LinearOpMode {
 
@@ -47,8 +46,11 @@ public class autoLeftOdometry extends LinearOpMode {
         Actions.runBlocking(
                 new SequentialAction(
                         gotoBucket,
+                        arm.moveArmToBucketDegrees(),
                         arm.extendViperslides(),
-                        intake.openClaw()
+                        intake.openClaw(),
+                        arm.retractViperslides(),
+                        arm.moveArmToCollectionDegrees()
                 ));
 
     }
