@@ -104,7 +104,7 @@ public class autoRightMacro extends LinearOpMode {
         drivetrain.frontRight.setPower(-1);
         drivetrain.backLeft.setPower(-1);
         drivetrain.backRight.setPower(1);
-        sleep(500);
+        sleep(470);
         drivetrain.frontLeft.setPower(0);
         drivetrain.frontRight.setPower(0);
         drivetrain.backLeft.setPower(0);
