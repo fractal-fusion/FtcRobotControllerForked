@@ -60,7 +60,7 @@ public class autoRightMacro extends LinearOpMode {
         arm.moveViperslides(0);
         sleep(1000);
         arm.moveArm(Arm.collectionDegrees);
-        sleep(1000);
+        sleep(900);
 
         //strafe right
         drivetrain.frontLeft.setPower(1);
