@@ -45,8 +45,6 @@ public class autoRightMacro extends LinearOpMode {
         intake.mode(Intake.open);
         sleep(200);
 
-        //park in the scoring zone
-        //move backwards out
         drivetrain.frontLeft.setPower(-1);
         drivetrain.frontRight.setPower(-1);
         drivetrain.backLeft.setPower(-1);
@@ -99,6 +97,42 @@ public class autoRightMacro extends LinearOpMode {
         drivetrain.backRight.setPower(0);
         sleep(10);
 
+        //strafe left
+        drivetrain.frontLeft.setPower(1);
+        drivetrain.frontRight.setPower(-1);
+        drivetrain.backLeft.setPower(-1);
+        drivetrain.backRight.setPower(1);
+        sleep(470);
+        drivetrain.frontLeft.setPower(0);
+        drivetrain.frontRight.setPower(0);
+        drivetrain.backLeft.setPower(0);
+        drivetrain.backRight.setPower(0);
+        sleep(10);
+
+        //strafe left
+        drivetrain.frontLeft.setPower(-1);
+        drivetrain.frontRight.setPower(1);
+        drivetrain.backLeft.setPower(1);
+        drivetrain.backRight.setPower(-1);
+        sleep(470);
+        drivetrain.frontLeft.setPower(0);
+        drivetrain.frontRight.setPower(0);
+        drivetrain.backLeft.setPower(0);
+        drivetrain.backRight.setPower(0);
+        sleep(10);
+
+        //go forward
+        drivetrain.frontLeft.setPower(1);
+        drivetrain.frontRight.setPower(1);
+        drivetrain.backLeft.setPower(1);
+        drivetrain.backRight.setPower(1);
+        sleep(150);
+        drivetrain.frontLeft.setPower(0);
+        drivetrain.frontRight.setPower(0);
+        drivetrain.backLeft.setPower(0);
+        drivetrain.backRight.setPower(0);
+        sleep(10);
+
         //strafe right
         drivetrain.frontLeft.setPower(1);
         drivetrain.frontRight.setPower(-1);
@@ -109,7 +143,67 @@ public class autoRightMacro extends LinearOpMode {
         drivetrain.frontRight.setPower(0);
         drivetrain.backLeft.setPower(0);
         drivetrain.backRight.setPower(0);
-        sleep(100);
+        sleep(10);
+
+        //strafe left
+        drivetrain.frontLeft.setPower(-1);
+        drivetrain.frontRight.setPower(1);
+        drivetrain.backLeft.setPower(1);
+        drivetrain.backRight.setPower(-1);
+        sleep(470);
+        drivetrain.frontLeft.setPower(0);
+        drivetrain.frontRight.setPower(0);
+        drivetrain.backLeft.setPower(0);
+        drivetrain.backRight.setPower(0);
+        sleep(10);
+
+        //go forward
+        drivetrain.frontLeft.setPower(1);
+        drivetrain.frontRight.setPower(1);
+        drivetrain.backLeft.setPower(1);
+        drivetrain.backRight.setPower(1);
+        sleep(150);
+        drivetrain.frontLeft.setPower(0);
+        drivetrain.frontRight.setPower(0);
+        drivetrain.backLeft.setPower(0);
+        drivetrain.backRight.setPower(0);
+        sleep(10);
+
+        //strafe right
+        drivetrain.frontLeft.setPower(1);
+        drivetrain.frontRight.setPower(-1);
+        drivetrain.backLeft.setPower(-1);
+        drivetrain.backRight.setPower(1);
+        sleep(470);
+        drivetrain.frontLeft.setPower(0);
+        drivetrain.frontRight.setPower(0);
+        drivetrain.backLeft.setPower(0);
+        drivetrain.backRight.setPower(0);
+        sleep(10);
+
+        //strafe left
+        drivetrain.frontLeft.setPower(-1);
+        drivetrain.frontRight.setPower(1);
+        drivetrain.backLeft.setPower(1);
+        drivetrain.backRight.setPower(-1);
+        sleep(470);
+        drivetrain.frontLeft.setPower(0);
+        drivetrain.frontRight.setPower(0);
+        drivetrain.backLeft.setPower(0);
+        drivetrain.backRight.setPower(0);
+        sleep(10);
+
+        //go forward
+        drivetrain.frontLeft.setPower(1);
+        drivetrain.frontRight.setPower(1);
+        drivetrain.backLeft.setPower(1);
+        drivetrain.backRight.setPower(1);
+        sleep(150);
+        drivetrain.frontLeft.setPower(0);
+        drivetrain.frontRight.setPower(0);
+        drivetrain.backLeft.setPower(0);
+        drivetrain.backRight.setPower(0);
+        sleep(10);
 
         //strafe right for park
         drivetrain.frontLeft.setPower(1);
