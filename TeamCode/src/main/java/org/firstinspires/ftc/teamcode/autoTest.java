@@ -27,7 +27,7 @@ public class autoTest extends LinearOpMode {
                         arm.moveArmToBucketDegrees(),
                         arm.extendViperslides(),
                         arm.retractViperslides(),
-                        arm.moveArmToCollectionDegrees()
+                        arm.moveArmToCollectSampleDegrees()
                 ))
                 .build();
 

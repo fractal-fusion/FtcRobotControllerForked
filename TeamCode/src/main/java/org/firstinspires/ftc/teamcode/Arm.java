@@ -213,7 +213,7 @@ public class Arm {
         };
     }
 
-    public Action moveArmToCollectionDegrees() {
+    public Action moveArmToCollectSampleDegrees() {
         return new Action() {
             private boolean initialized = false;
             private int target = (int) (Arm.collectionDegrees * encoderTicksPerDegrees);
@@ -351,6 +351,36 @@ public class Arm {
                     initialized = true;
                 }
                 if (viperslideLeft.getCurrentPosition() > target) {
+                    packet.put("viperslidepos", viperslideLeft.getCurrentPosition());
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        };
+    }
+
+    public Action primeCollectSampleViperslides() {
+        return new Action() {
+            private boolean initialized = false;
+            //extend 15 inches to score the specimen on the high rung
+            private int target = (int) (15 * encoderTicksPerInches);
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                if (!initialized) {
+                    viperslideLeft.setTargetPosition(target);
+                    viperslideRight.setTargetPosition(target);
+
+                    viperslideLeft.setPower(1);
+                    viperslideRight.setPower(1);
+
+                    viperslideLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    viperslideRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                    initialized = true;
+                }
+                if (viperslideLeft.getCurrentPosition() < target) {
                     packet.put("viperslidepos", viperslideLeft.getCurrentPosition());
                     return true;
                 }

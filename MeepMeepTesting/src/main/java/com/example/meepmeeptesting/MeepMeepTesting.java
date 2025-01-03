@@ -58,7 +58,6 @@ public class MeepMeepTesting {
 
                 //move to bucket
                     .splineTo(new Vector2d(-52.5,-52.5), Math.toRadians(225))
-                    .waitSeconds(1)
                 //rotate arm extend viperslides and drop sample into bucket
                 //deextend viperslides to 0 inches and rotate arm to 0 degrees
 
