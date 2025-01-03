@@ -49,17 +49,16 @@ public class autoLeftOdometry extends LinearOpMode {
 
                 //rotate viperslides and move to bucket
                 .splineTo(new Vector2d(-52.5,-52.5), Math.toRadians(225))
+                .afterTime(1, arm.moveArmToBucketDegrees())
                 .waitSeconds(1)
                 //extend viperslides and drop sample in bucket
                 //dextend viperslides to 15 inches
                 .stopAndAdd(new SequentialAction(
-                        arm.moveArmToBucketDegrees(),
+                        //arm.moveArmToBucketDegrees(),
                         arm.extendViperslides(),
                         intake.openClaw(),
                         arm.primeCollectSampleViperslides()
                 ))
-                //extend viperslides and drop sample in bucket
-                //dextend viperslides to 15 inches
 
                 //move to middle sample
                 .turnTo(Math.toRadians(90))
@@ -73,11 +72,12 @@ public class autoLeftOdometry extends LinearOpMode {
 
                 //move to bucket
                 .splineTo(new Vector2d(-52.5,-52.5), Math.toRadians(225))
+                .afterTime(1, arm.moveArmToBucketDegrees())
                 .waitSeconds(1)
                 //rotate arm extend viperslides and drop sample into bucket
                 //deextend viperslides to 15 inches
                 .stopAndAdd(new SequentialAction(
-                        arm.moveArmToBucketDegrees(),
+                        //arm.moveArmToBucketDegrees(),
                         arm.extendViperslides(),
                         intake.openClaw(),
                         arm.primeCollectSampleViperslides()
@@ -96,10 +96,11 @@ public class autoLeftOdometry extends LinearOpMode {
 
                 //move to bucket
                 .splineTo(new Vector2d(-52.5,-52.5), Math.toRadians(225))
+                .afterTime(1, arm.moveArmToBucketDegrees())
                 //rotate arm extend viperslides and drop sample into bucket
                 //deextend viperslides to 0 inches and rotate arm to 0 degrees
                 .stopAndAdd(new SequentialAction(
-                        arm.moveArmToBucketDegrees(),
+                        //arm.moveArmToBucketDegrees(),
                         arm.extendViperslides(),
                         intake.openClaw(),
                         arm.moveArmtoRestPosition()
