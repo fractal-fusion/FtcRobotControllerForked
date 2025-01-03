@@ -242,12 +242,42 @@ public class Arm {
         };
     }
 
-    //special action for auto
+    //special actions for auto
     public Action moveArmToCollectSpecimenDegrees() {
         return new Action() {
             private boolean initialized = false;
             //five degrees allows for collection of the specimen from the ground
             private int target = (int) (5 * encoderTicksPerDegrees);
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                if (!initialized) {
+                    armRotationLeft.setTargetPosition(target);
+                    armRotationRight.setTargetPosition(target);
+
+                    armRotationLeft.setPower(0.7);
+                    armRotationRight.setPower(0.7);
+
+                    armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                    initialized = true;
+                }
+                if (armRotationLeft.getCurrentPosition() < target) {
+                    packet.put("armposition", armRotationLeft.getCurrentPosition());
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        };
+    }
+
+    public Action moveArmtoRestPosition() {
+        return new Action() {
+            private boolean initialized = false;
+            //five degrees allows for collection of the specimen from the ground
+            private int target = 0;
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
