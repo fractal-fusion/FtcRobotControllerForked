@@ -71,7 +71,9 @@ public class autoLeftOdometry extends LinearOpMode {
                 .stopAndAdd(new SequentialAction(
                         arm.moveArmToCollectSampleDegrees(),
                         intake.closeClaw(),
-                        new SleepAction(2)
+                        new SleepAction(2),
+                        arm.moveArmToBucketDegrees(),
+                        new SleepAction(1)
                 ))
 
                 //move to bucket
@@ -95,7 +97,10 @@ public class autoLeftOdometry extends LinearOpMode {
                 .stopAndAdd(new SequentialAction(
                         arm.moveArmToCollectSampleDegrees(),
                         intake.rotateWristToVertical(),
-                        intake.closeClaw()
+                        intake.closeClaw(),
+                        new SleepAction(2),
+                        arm.moveArmToBucketDegrees(),
+                        new SleepAction(1)
                 ))
 
                 //move to bucket
