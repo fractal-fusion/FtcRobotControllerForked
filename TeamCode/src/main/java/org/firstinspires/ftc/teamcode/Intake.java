@@ -93,30 +93,20 @@ public class Intake {
 
     public Action closeClaw() {
         return new Action() {
-            private boolean initialized = false;
-
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                if (!initialized) {
-                    claw.setPosition(Intake.close);
-                    initialized = true;
-                }
-                return initialized;
+                claw.setPosition(Intake.close);
+                return false;
             }
         };
     }
 
     public Action openClaw() {
         return new Action() {
-            private boolean initialized = false;
-
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                if (!initialized) {
-                    claw.setPosition(Intake.open);
-                    initialized = true;
-                }
-                return initialized;
+                claw.setPosition(Intake.open);
+                return false;
             }
         };
     }

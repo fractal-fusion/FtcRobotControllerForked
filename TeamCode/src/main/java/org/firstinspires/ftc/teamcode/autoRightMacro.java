@@ -31,12 +31,12 @@ public class autoRightMacro extends LinearOpMode {
         drivetrain.frontRight.setPower(0.8);
         drivetrain.backLeft.setPower(0.8);
         drivetrain.backRight.setPower(0.8);
-        sleep(350);
+        sleep(450);
         drivetrain.frontLeft.setPower(0);
         drivetrain.frontRight.setPower(0);
         drivetrain.backLeft.setPower(0);
         drivetrain.backRight.setPower(0);
-        sleep(10);
+        sleep(500);
 
         //extend viperslide and score specimen
         arm.moveViperslides(15);
@@ -67,7 +67,7 @@ public class autoRightMacro extends LinearOpMode {
         drivetrain.frontRight.setPower(-1);
         drivetrain.backLeft.setPower(-1);
         drivetrain.backRight.setPower(1);
-        sleep(500);
+        sleep(600);
         drivetrain.frontLeft.setPower(0);
         drivetrain.frontRight.setPower(0);
         drivetrain.backLeft.setPower(0);
@@ -79,7 +79,7 @@ public class autoRightMacro extends LinearOpMode {
         drivetrain.frontRight.setPower(-1);
         drivetrain.backLeft.setPower(-1);
         drivetrain.backRight.setPower(1);
-        sleep(250);
+        sleep(500);
         drivetrain.frontLeft.setPower(0);
         drivetrain.frontRight.setPower(0);
         drivetrain.backLeft.setPower(0);
@@ -90,7 +90,7 @@ public class autoRightMacro extends LinearOpMode {
         drivetrain.frontRight.setPower(-1);
         drivetrain.backLeft.setPower(1);
         drivetrain.backRight.setPower(-1);
-        sleep(200);
+        sleep(350);
         drivetrain.frontLeft.setPower(0);
         drivetrain.frontRight.setPower(0);
         drivetrain.backLeft.setPower(0);
