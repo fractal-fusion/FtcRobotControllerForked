@@ -86,6 +86,7 @@ public class autoLeftOdometry extends LinearOpMode {
                         //arm.moveArmToBucketDegrees(),
                         arm.extendViperslides(),
                         intake.openClaw(),
+                        new SleepAction(1),
                         arm.primeCollectSampleViperslides()
                 ))
 
@@ -112,6 +113,7 @@ public class autoLeftOdometry extends LinearOpMode {
                         //arm.moveArmToBucketDegrees(),
                         arm.extendViperslides(),
                         intake.openClaw(),
+                        new SleepAction(1),
                         arm.moveArmtoRestPosition()
                 ))
                 .build();
