@@ -61,7 +61,7 @@ public class Arm {
     public final static double clearBarrierDegrees = 15.0;
     public final static double scoreDegrees = 72.0;
     public final static double hangExtendedDegrees = 110.0;
-    public final static double hangClimbDegrees = 15.0;
+    public final static double hangClimbDegrees = 6.0;
     public final static double collectionDegrees = 3.0;
 //    public final static double restingDegrees = 10.0;
 

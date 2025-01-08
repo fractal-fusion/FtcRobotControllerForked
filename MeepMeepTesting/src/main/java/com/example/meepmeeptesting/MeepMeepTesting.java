@@ -1,5 +1,6 @@
 package com.example.meepmeeptesting;
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.ProfileAccelConstraint;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.noahbres.meepmeep.MeepMeep;
 import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
@@ -18,7 +19,15 @@ public class MeepMeepTesting {
                 .setConstraints(50, 50, Math.PI, Math.PI, 13.465)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(0, -62, Math.toRadians(90)))
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-tilelength, -62, Math.toRadians(90)))
+                .splineTo(new Vector2d(-50.5,-50.5), Math.toRadians(225))
+                                .waitSeconds(1)
+
+                .turnTo(Math.toRadians(90))
+                .strafeTo(new Vector2d(-48.4, -45.0))
+                .waitSeconds(1)
+
+
                 //show to human player where all the specimens should be placed
                 .splineTo(new Vector2d(specimenx, specimeny), Math.toRadians(specimendegrees))
                 //prime viperslides for specimen
