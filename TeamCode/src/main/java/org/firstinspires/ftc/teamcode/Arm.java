@@ -184,6 +184,8 @@ public class Arm {
     }
 
     // -----------------------------ROADRUNNER ACTIONS ------------------------------------
+
+    //TODO: create another action for scoring in basket specifically for auto
     public Action moveArmToScoreDegrees() {
         return new Action() {
             private boolean initialized = false;
@@ -306,7 +308,7 @@ public class Arm {
     public Action extendViperslides() {
         return new Action() {
             private boolean initialized = false;
-            private int target = (int) (viperslideMaxInches * encoderTicksPerInches);
+            private int target = (int) (33.5 * encoderTicksPerInches);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
