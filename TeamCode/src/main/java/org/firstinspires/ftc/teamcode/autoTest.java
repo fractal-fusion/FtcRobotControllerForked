@@ -24,7 +24,7 @@ public class autoTest extends LinearOpMode {
         Action fullActionTest = drive.actionBuilder(initialPose)
                 .stopAndAdd(
                 new SequentialAction(
-                        arm.moveArmToBucketDegrees(),
+                        arm.moveArmToScoreDegrees(),
                         arm.extendViperslides(),
                         arm.retractViperslides(),
                         arm.moveArmToCollectSampleDegrees()

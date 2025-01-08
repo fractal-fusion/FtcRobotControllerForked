@@ -113,30 +113,20 @@ public class Intake {
 
     public Action rotateWristToHorizontal() {
         return new Action() {
-            private boolean initialized = false;
-
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                if (!initialized) {
-                    wrist.setPosition(wristHorizontalPos);
-                    initialized = true;
-                }
-                return initialized;
+                wrist.setPosition(wristHorizontalPos);
+                return false;
             }
         };
     }
 
     public Action rotateWristToVertical() {
         return new Action() {
-            private boolean initialized = false;
-
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                if (!initialized) {
-                    wrist.setPosition(wristVerticalPos);
-                    initialized = true;
-                }
-                return initialized;
+                wrist.setPosition(wristVerticalPos);
+                return false;
             }
         };
     }

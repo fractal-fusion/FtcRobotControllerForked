@@ -184,7 +184,7 @@ public class Arm {
     }
 
     // -----------------------------ROADRUNNER ACTIONS ------------------------------------
-    public Action moveArmToBucketDegrees() {
+    public Action moveArmToScoreDegrees() {
         return new Action() {
             private boolean initialized = false;
             private int target = (int) (Arm.scoreDegrees * encoderTicksPerDegrees);
@@ -361,11 +361,11 @@ public class Arm {
         };
     }
 
-    public Action primeCollectSampleViperslides() {
+    public Action primeCollectionViperslides() {
         return new Action() {
             private boolean initialized = false;
             //extend 15 inches to score the specimen on the high rung
-            private int target = (int) (15 * encoderTicksPerInches);
+            private int target = (int) (13 * encoderTicksPerInches);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
