@@ -27,11 +27,11 @@ public class autoRightMacro extends LinearOpMode {
         sleep(1000);
 
         //move to the chamber
-        drivetrain.frontLeft.setPower(0.8);
-        drivetrain.frontRight.setPower(0.8);
-        drivetrain.backLeft.setPower(0.8);
-        drivetrain.backRight.setPower(0.8);
-        sleep(450);
+        drivetrain.frontLeft.setPower(0.2);
+        drivetrain.frontRight.setPower(0.2);
+        drivetrain.backLeft.setPower(0.2);
+        drivetrain.backRight.setPower(0.2);
+        sleep(2100);
         drivetrain.frontLeft.setPower(0);
         drivetrain.frontRight.setPower(0);
         drivetrain.backLeft.setPower(0);
@@ -62,137 +62,138 @@ public class autoRightMacro extends LinearOpMode {
         arm.moveArm(Arm.collectionDegrees);
         sleep(900);
 
-        //strafe right
-        drivetrain.frontLeft.setPower(1);
-        drivetrain.frontRight.setPower(-1);
-        drivetrain.backLeft.setPower(-1);
-        drivetrain.backRight.setPower(1);
-        sleep(600);
-        drivetrain.frontLeft.setPower(0);
-        drivetrain.frontRight.setPower(0);
-        drivetrain.backLeft.setPower(0);
-        drivetrain.backRight.setPower(0);
-        sleep(10);
-
-        //go forward
-        drivetrain.frontLeft.setPower(1);
-        drivetrain.frontRight.setPower(-1);
-        drivetrain.backLeft.setPower(-1);
-        drivetrain.backRight.setPower(1);
-        sleep(500);
-        drivetrain.frontLeft.setPower(0);
-        drivetrain.frontRight.setPower(0);
-        drivetrain.backLeft.setPower(0);
-        drivetrain.backRight.setPower(0);
-
-        //turn right
-        drivetrain.frontLeft.setPower(1);
-        drivetrain.frontRight.setPower(-1);
-        drivetrain.backLeft.setPower(1);
-        drivetrain.backRight.setPower(-1);
-        sleep(350);
-        drivetrain.frontLeft.setPower(0);
-        drivetrain.frontRight.setPower(0);
-        drivetrain.backLeft.setPower(0);
-        drivetrain.backRight.setPower(0);
-        sleep(10);
-
-        //strafe right
-        drivetrain.frontLeft.setPower(1);
-        drivetrain.frontRight.setPower(-1);
-        drivetrain.backLeft.setPower(-1);
-        drivetrain.backRight.setPower(1);
-        sleep(700);
-        drivetrain.frontLeft.setPower(0);
-        drivetrain.frontRight.setPower(0);
-        drivetrain.backLeft.setPower(0);
-        drivetrain.backRight.setPower(0);
-        sleep(10);
-
-        //strafe left
-        drivetrain.frontLeft.setPower(-1);
-        drivetrain.frontRight.setPower(1);
-        drivetrain.backLeft.setPower(1);
-        drivetrain.backRight.setPower(-1);
-        sleep(700);
-        drivetrain.frontLeft.setPower(0);
-        drivetrain.frontRight.setPower(0);
-        drivetrain.backLeft.setPower(0);
-        drivetrain.backRight.setPower(0);
-        sleep(10);
-
-        //go forward
-        drivetrain.frontLeft.setPower(1);
-        drivetrain.frontRight.setPower(1);
-        drivetrain.backLeft.setPower(1);
-        drivetrain.backRight.setPower(1);
-        sleep(200);
-        drivetrain.frontLeft.setPower(0);
-        drivetrain.frontRight.setPower(0);
-        drivetrain.backLeft.setPower(0);
-        drivetrain.backRight.setPower(0);
-        sleep(10);
-
-        //strafe right
-        drivetrain.frontLeft.setPower(1);
-        drivetrain.frontRight.setPower(-1);
-        drivetrain.backLeft.setPower(-1);
-        drivetrain.backRight.setPower(1);
-        sleep(700);
-        drivetrain.frontLeft.setPower(0);
-        drivetrain.frontRight.setPower(0);
-        drivetrain.backLeft.setPower(0);
-        drivetrain.backRight.setPower(0);
-        sleep(10);
-
-        //strafe left
-        drivetrain.frontLeft.setPower(-1);
-        drivetrain.frontRight.setPower(1);
-        drivetrain.backLeft.setPower(1);
-        drivetrain.backRight.setPower(-1);
-        sleep(700);
-        drivetrain.frontLeft.setPower(0);
-        drivetrain.frontRight.setPower(0);
-        drivetrain.backLeft.setPower(0);
-        drivetrain.backRight.setPower(0);
-        sleep(10);
-
-        //go forward
-        drivetrain.frontLeft.setPower(1);
-        drivetrain.frontRight.setPower(1);
-        drivetrain.backLeft.setPower(1);
-        drivetrain.backRight.setPower(1);
-        sleep(200);
-        drivetrain.frontLeft.setPower(0);
-        drivetrain.frontRight.setPower(0);
-        drivetrain.backLeft.setPower(0);
-        drivetrain.backRight.setPower(0);
-        sleep(10);
-
-        //strafe right
-        drivetrain.frontLeft.setPower(1);
-        drivetrain.frontRight.setPower(-1);
-        drivetrain.backLeft.setPower(-1);
-        drivetrain.backRight.setPower(1);
-        sleep(700);
-        drivetrain.frontLeft.setPower(0);
-        drivetrain.frontRight.setPower(0);
-        drivetrain.backLeft.setPower(0);
-        drivetrain.backRight.setPower(0);
-        sleep(10);
-
-
-
-        //strafe right for park
+//        //strafe right
 //        drivetrain.frontLeft.setPower(1);
 //        drivetrain.frontRight.setPower(-1);
 //        drivetrain.backLeft.setPower(-1);
 //        drivetrain.backRight.setPower(1);
-//        sleep(800);
+//        sleep(600);
 //        drivetrain.frontLeft.setPower(0);
 //        drivetrain.frontRight.setPower(0);
 //        drivetrain.backLeft.setPower(0);
 //        drivetrain.backRight.setPower(0);
-//        sleep(100);
+//        sleep(10);
+//
+//        //go forward
+//        drivetrain.frontLeft.setPower(1);
+//        drivetrain.frontRight.setPower(-1);
+//        drivetrain.backLeft.setPower(-1);
+//        drivetrain.backRight.setPower(1);
+//        sleep(500);
+//        drivetrain.frontLeft.setPower(0);
+//        drivetrain.frontRight.setPower(0);
+//        drivetrain.backLeft.setPower(0);
+//        drivetrain.backRight.setPower(0);
+//
+//        //turn right
+//        drivetrain.frontLeft.setPower(1);
+//        drivetrain.frontRight.setPower(-1);
+//        drivetrain.backLeft.setPower(1);
+//        drivetrain.backRight.setPower(-1);
+//        sleep(350);
+//        drivetrain.frontLeft.setPower(0);
+//        drivetrain.frontRight.setPower(0);
+//        drivetrain.backLeft.setPower(0);
+//        drivetrain.backRight.setPower(0);
+//        sleep(10);
+//
+//        //strafe right
+//        drivetrain.frontLeft.setPower(1);
+//        drivetrain.frontRight.setPower(-1);
+//        drivetrain.backLeft.setPower(-1);
+//        drivetrain.backRight.setPower(1);
+//        sleep(700);
+//        drivetrain.frontLeft.setPower(0);
+//        drivetrain.frontRight.setPower(0);
+//        drivetrain.backLeft.setPower(0);
+//        drivetrain.backRight.setPower(0);
+//        sleep(10);
+//
+//        //strafe left
+//        drivetrain.frontLeft.setPower(-1);
+//        drivetrain.frontRight.setPower(1);
+//        drivetrain.backLeft.setPower(1);
+//        drivetrain.backRight.setPower(-1);
+//        sleep(700);
+//        drivetrain.frontLeft.setPower(0);
+//        drivetrain.frontRight.setPower(0);
+//        drivetrain.backLeft.setPower(0);
+//        drivetrain.backRight.setPower(0);
+//        sleep(10);
+//
+//        //go forward
+//        drivetrain.frontLeft.setPower(1);
+//        drivetrain.frontRight.setPower(1);
+//        drivetrain.backLeft.setPower(1);
+//        drivetrain.backRight.setPower(1);
+//        sleep(200);
+//        drivetrain.frontLeft.setPower(0);
+//        drivetrain.frontRight.setPower(0);
+//        drivetrain.backLeft.setPower(0);
+//        drivetrain.backRight.setPower(0);
+//        sleep(10);
+//
+//        //strafe right
+//        drivetrain.frontLeft.setPower(1);
+//        drivetrain.frontRight.setPower(-1);
+//        drivetrain.backLeft.setPower(-1);
+//        drivetrain.backRight.setPower(1);
+//        sleep(700);
+//        drivetrain.frontLeft.setPower(0);
+//        drivetrain.frontRight.setPower(0);
+//        drivetrain.backLeft.setPower(0);
+//        drivetrain.backRight.setPower(0);
+//        sleep(10);
+//
+//        //strafe left
+//        drivetrain.frontLeft.setPower(-1);
+//        drivetrain.frontRight.setPower(1);
+//        drivetrain.backLeft.setPower(1);
+//        drivetrain.backRight.setPower(-1);
+//        sleep(700);
+//        drivetrain.frontLeft.setPower(0);
+//        drivetrain.frontRight.setPower(0);
+//        drivetrain.backLeft.setPower(0);
+//        drivetrain.backRight.setPower(0);
+//        sleep(10);
+//
+//        //go forward
+//        drivetrain.frontLeft.setPower(1);
+//        drivetrain.frontRight.setPower(1);
+//        drivetrain.backLeft.setPower(1);
+//        drivetrain.backRight.setPower(1);
+//        sleep(200);
+//        drivetrain.frontLeft.setPower(0);
+//        drivetrain.frontRight.setPower(0);
+//        drivetrain.backLeft.setPower(0);
+//        drivetrain.backRight.setPower(0);
+//        sleep(10);
+//
+////        park
+////        strafe right
+//        drivetrain.frontLeft.setPower(1);
+//        drivetrain.frontRight.setPower(-1);
+//        drivetrain.backLeft.setPower(-1);
+//        drivetrain.backRight.setPower(1);
+//        sleep(700);
+//        drivetrain.frontLeft.setPower(0);
+//        drivetrain.frontRight.setPower(0);
+//        drivetrain.backLeft.setPower(0);
+//        drivetrain.backRight.setPower(0);
+//        sleep(10);
+//
+//
+
+//        strafe right for park
+        drivetrain.frontLeft.setPower(1);
+        drivetrain.frontRight.setPower(-1);
+        drivetrain.backLeft.setPower(-1);
+        drivetrain.backRight.setPower(1);
+        sleep(800);
+        drivetrain.frontLeft.setPower(0);
+        drivetrain.frontRight.setPower(0);
+        drivetrain.backLeft.setPower(0);
+        drivetrain.backRight.setPower(0);
+        sleep(100);
     }
 };

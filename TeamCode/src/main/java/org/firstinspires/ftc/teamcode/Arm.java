@@ -195,8 +195,8 @@ public class Arm {
                     armRotationLeft.setTargetPosition(target);
                     armRotationRight.setTargetPosition(target);
 
-                    armRotationLeft.setPower(0.7);
-                    armRotationRight.setPower(0.7);
+                    armRotationLeft.setPower(0.9);
+                    armRotationRight.setPower(0.9);
 
                     armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -224,8 +224,8 @@ public class Arm {
                     armRotationLeft.setTargetPosition(target);
                     armRotationRight.setTargetPosition(target);
 
-                    armRotationLeft.setPower(0.7);
-                    armRotationRight.setPower(0.7);
+                    armRotationLeft.setPower(0.9);
+                    armRotationRight.setPower(0.9);
 
                     armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -255,8 +255,8 @@ public class Arm {
                     armRotationLeft.setTargetPosition(target);
                     armRotationRight.setTargetPosition(target);
 
-                    armRotationLeft.setPower(0.7);
-                    armRotationRight.setPower(0.7);
+                    armRotationLeft.setPower(0.9);
+                    armRotationRight.setPower(0.9);
 
                     armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -285,8 +285,8 @@ public class Arm {
                     armRotationLeft.setTargetPosition(target);
                     armRotationRight.setTargetPosition(target);
 
-                    armRotationLeft.setPower(0.7);
-                    armRotationRight.setPower(0.7);
+                    armRotationLeft.setPower(0.9);
+                    armRotationRight.setPower(0.9);
 
                     armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
