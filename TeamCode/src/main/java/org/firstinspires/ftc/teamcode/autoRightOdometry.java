@@ -46,7 +46,8 @@ public class autoRightOdometry extends LinearOpMode {
                         arm.scoreSpecimenViperslides(),
                         intake.openClaw(),
                         arm.retractViperslides(),
-                        arm.moveArmtoRestPosition()
+                        arm.moveArmtoRestPosition(),
+                        new SleepAction(1.8)
                 ))
 
                 //START PUSHING
