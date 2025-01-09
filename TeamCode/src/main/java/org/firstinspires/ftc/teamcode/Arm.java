@@ -185,7 +185,6 @@ public class Arm {
 
     // -----------------------------ROADRUNNER ACTIONS ------------------------------------
 
-    //TODO: create another action for scoring in basket specifically for auto
     public Action moveArmToScoreDegrees() {
         return new Action() {
             private boolean initialized = false;
@@ -397,7 +396,7 @@ public class Arm {
         return new Action() {
             private boolean initialized = false;
             //extend 15 inches to score the specimen on the high rung
-            private int target = (int) (15 * encoderTicksPerInches);
+            private int target = (int) (13 * encoderTicksPerInches);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
