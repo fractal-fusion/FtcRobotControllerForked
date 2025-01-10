@@ -71,21 +71,19 @@ public class autoLeftOdometry extends LinearOpMode {
 
                 //rotate arm and close claw
                 .stopAndAdd(new SequentialAction(
-                        intake.closeClaw(),
                         new SleepAction(0.5),
-                        arm.moveArmToScoreDegrees(),
-                        new SleepAction(1.1)
+                        intake.closeClaw()
+//                        arm.moveArmToScoreDegrees()
                 ))
 
-                //rotate viperslides and move to bucket to score rightmost sample
+                //move to bucket to score rightmost sample
                 .turnTo(Math.toRadians(225))
                 .strafeTo(new Vector2d(-50,-50))
-                .waitSeconds(0.1)
+                .afterTime(0.1, arm.moveArmToScoreDegrees())
+//                .waitSeconds(0.1)
 
                 //extend viperslides
-                .stopAndAdd(new SequentialAction(
-                        arm.extendViperslides()
-                ))
+                .afterTime(1, arm.extendViperslides())
 
                 //strafe so claw is above the bucket
                 .strafeTo(new Vector2d(-53.5,-53.5))
@@ -105,7 +103,7 @@ public class autoLeftOdometry extends LinearOpMode {
                 //deextend viperslide
                 .stopAndAdd(arm.primeCollectionViperslides())
 
-                //move to middle sample
+                //move to middle sample while lowering arm
                 .turnTo(Math.toRadians(90))
                 .strafeTo(new Vector2d(-60, -46.0))
 
@@ -113,25 +111,20 @@ public class autoLeftOdometry extends LinearOpMode {
 //                .waitSeconds(0.1)
                 //rotate arm and close claw
                 .stopAndAdd(new SequentialAction(
-                        arm.moveArmToCollectSampleDegrees(),
-                        new SleepAction(1.1),
-                        intake.closeClaw(),
+//                        arm.moveArmToCollectSampleDegrees(),
                         new SleepAction(0.5),
-                        arm.moveArmToScoreDegrees(),
-                        new SleepAction(1.1)
+                        intake.closeClaw()
+//                        arm.moveArmToScoreDegrees()
                 ))
 
                 //move to bucket to score middle sample
                 .turnTo(Math.toRadians(225))
                 .strafeTo(new Vector2d(-50,-50))
-
-                .afterTime(0.1, arm.moveArmToCollectSampleDegrees())
+                .afterTime(0.1, arm.moveArmToScoreDegrees())
 //                .waitSeconds(0.1)
 
                 //extend viperslides
-                .stopAndAdd(new SequentialAction(
-                        arm.extendViperslides()
-                ))
+                .afterTime(1, arm.extendViperslides())
 
                 //strafe so claw is above the bucket
                 .strafeTo(new Vector2d(-53.5,-53.5))
@@ -151,32 +144,32 @@ public class autoLeftOdometry extends LinearOpMode {
                 //deextend viperslide
                 .stopAndAdd(arm.primeCollectionViperslides())
 
-                //move to leftmost sample
+                //move to leftmost sample while lowering arm
                 .turnTo(Math.toRadians(180))
                 .strafeTo(new Vector2d(-46, -22))
 
                 .afterTime(0.1, arm.moveArmToCollectSampleDegrees())
 //                .waitSeconds(0.1)
+
                 //rotate arm and wrist, and close claw
                 .stopAndAdd(new SequentialAction(
                         intake.rotateWristToVertical(),
-                        arm.moveArmToCollectSampleDegrees(),
+//                        arm.moveArmToCollectSampleDegrees(),
                         new SleepAction(1.1),
                         intake.closeClaw(),
                         intake.rotateWristToHorizontal(),
                         new SleepAction(0.2),
-                        arm.moveArmToScoreDegrees(),
+//                        arm.moveArmToScoreDegrees(),
                         new SleepAction(0.5)
                 ))
 
                 //move to bucket to score leftmost sample
                 .turnTo(Math.toRadians(225))
                 .strafeTo(new Vector2d(-50,-50))
+                .afterTime(0.1, arm.moveArmToScoreDegrees())
 
                 //extend viperslides
-                .stopAndAdd(new SequentialAction(
-                        arm.extendViperslides()
-                ))
+                .afterTime(1, arm.extendViperslides())
 
                 //strafe so claw is above the bucket
                 .strafeTo(new Vector2d(-53.5,-53.5))
