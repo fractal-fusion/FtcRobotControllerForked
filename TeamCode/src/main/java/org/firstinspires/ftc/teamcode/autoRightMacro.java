@@ -31,7 +31,7 @@ public class autoRightMacro extends LinearOpMode {
         drivetrain.frontRight.setPower(0.2);
         drivetrain.backLeft.setPower(0.2);
         drivetrain.backRight.setPower(0.2);
-        sleep(2100);
+        sleep(4300);
         drivetrain.frontLeft.setPower(0);
         drivetrain.frontRight.setPower(0);
         drivetrain.backLeft.setPower(0);
@@ -49,18 +49,18 @@ public class autoRightMacro extends LinearOpMode {
         drivetrain.frontRight.setPower(-1);
         drivetrain.backLeft.setPower(-1);
         drivetrain.backRight.setPower(-1);
-        sleep(100);
+        sleep(250);
         drivetrain.frontLeft.setPower(0);
         drivetrain.frontRight.setPower(0);
         drivetrain.backLeft.setPower(0);
         drivetrain.backRight.setPower(0);
-        sleep(10);
+        sleep(20);
 
         //move arm down
         arm.moveViperslides(0);
         sleep(1000);
         arm.moveArm(Arm.collectionDegrees);
-        sleep(900);
+        sleep(1000);
 
 //        //strafe right
 //        drivetrain.frontLeft.setPower(1);
