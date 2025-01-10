@@ -79,7 +79,7 @@ public class autoLeftOdometry extends LinearOpMode {
                 //move to bucket to score rightmost sample
                 .turnTo(Math.toRadians(225))
                 .afterTime(0.1, arm.extendViperslides())
-                .strafeTo(new Vector2d(-50,-50))
+                .strafeTo(new Vector2d(-48,-48))
 //                .waitSeconds(0.1)
 
                 //strafe so claw is above the bucket
@@ -116,7 +116,7 @@ public class autoLeftOdometry extends LinearOpMode {
 
                 //move to bucket to score middle sample
                 .turnTo(Math.toRadians(225))
-                .strafeTo(new Vector2d(-50,-50))
+                .strafeTo(new Vector2d(-48,-48))
                 .afterTime(0, arm.moveArmToScoreDegrees())
 //                .waitSeconds(0.1)
 
@@ -161,7 +161,7 @@ public class autoLeftOdometry extends LinearOpMode {
 
                 //move to bucket to score leftmost sample
                 .turnTo(Math.toRadians(225))
-                .strafeTo(new Vector2d(-50,-50))
+                .strafeTo(new Vector2d(-48,-48))
                 .afterTime(0, arm.moveArmToScoreDegrees())
 
                 //extend viperslides
