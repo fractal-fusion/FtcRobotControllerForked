@@ -20,7 +20,7 @@ public class MeepMeepTesting {
                 .build();
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-tilelength, -62, Math.toRadians(90)))
-                .splineTo(new Vector2d(-50.5,-50.5), Math.toRadians(225))
+                .splineTo(new Vector2d(-50,-51), Math.toRadians(225))
                                 .waitSeconds(1)
 
                 .turnTo(Math.toRadians(90))
