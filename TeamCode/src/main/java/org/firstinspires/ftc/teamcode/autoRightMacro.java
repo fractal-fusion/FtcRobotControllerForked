@@ -23,7 +23,7 @@ public class autoRightMacro extends LinearOpMode {
         //move arm to correct degrees
         arm.moveArm(Arm.scoreDegrees);
         sleep(1000);
-        arm.moveViperslides(10);
+        arm.moveViperslides(11);
         sleep(1000);
 
         //move to the chamber
