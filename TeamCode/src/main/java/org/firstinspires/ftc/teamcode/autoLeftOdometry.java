@@ -72,9 +72,9 @@ public class autoLeftOdometry extends LinearOpMode {
                 //rotate arm and close claw
                 .stopAndAdd(new SequentialAction(
 //                        arm.moveArmToCollectSampleDegrees(),
-                        new SleepAction(0.5),
+                        new SleepAction(0.3),
                         intake.closeClaw(),
-                        new SleepAction(0.2),
+                        new SleepAction(0.28),
                         arm.moveArmToScoreDegrees(),
                         new SleepAction(0.5)
                 ))
@@ -115,7 +115,7 @@ public class autoLeftOdometry extends LinearOpMode {
                 //rotate arm and close claw
                 .stopAndAdd(new SequentialAction(
 //                        arm.moveArmToCollectSampleDegrees(),
-                        new SleepAction(0.5),
+                        new SleepAction(0.3),
                         intake.closeClaw(),
                         new SleepAction(0.28),
                         arm.moveArmToScoreDegrees(),
@@ -160,6 +160,7 @@ public class autoLeftOdometry extends LinearOpMode {
                         arm.moveArmToCollectSampleDegrees(),
                         new SleepAction(0.5),
                         intake.closeClaw(),
+                        new SleepAction(0.28),
                         intake.rotateWristToHorizontal()
 //                        new SleepAction(0.2),
 //                        arm.moveArmToScoreDegrees(),
