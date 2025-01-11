@@ -75,8 +75,8 @@ public class autoLeftOdometry extends LinearOpMode {
                         new SleepAction(0.3),
                         intake.closeClaw(),
                         new SleepAction(0.28),
-                        arm.moveArmToScoreDegrees(),
-                        new SleepAction(0.5)
+                        arm.moveArmToScoreDegrees()
+//                        new SleepAction(0.5)
                 ))
 
                 //rotate viperslides and move to bucket
@@ -118,8 +118,8 @@ public class autoLeftOdometry extends LinearOpMode {
                         new SleepAction(0.3),
                         intake.closeClaw(),
                         new SleepAction(0.28),
-                        arm.moveArmToScoreDegrees(),
-                        new SleepAction(0.5)
+                        arm.moveArmToScoreDegrees()
+//                        new SleepAction(0.5)
                 ))
 
                 //move to bucket
@@ -158,7 +158,7 @@ public class autoLeftOdometry extends LinearOpMode {
                 .stopAndAdd(new SequentialAction(
                         intake.rotateWristToVertical(),
                         arm.moveArmToCollectSampleDegrees(),
-                        new SleepAction(0.5),
+                        new SleepAction(0.2),
                         intake.closeClaw(),
                         new SleepAction(0.28),
                         intake.rotateWristToHorizontal()
