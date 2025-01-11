@@ -60,7 +60,7 @@ public class Arm {
     //define preset positions of the arm.
     public final static double clearBarrierDegrees = 15.0;
     public final static double scoreDegrees = 72.0;
-    public final static double hangExtendedDegrees = 110.0;
+    public final static double hangExtendedDegrees = 100.0;
     public final static double hangClimbDegrees = 6.0;
     public final static double collectionDegrees = 3.0;
 //    public final static double restingDegrees = 10.0;
@@ -102,6 +102,9 @@ public class Arm {
         //restrict the horizontal extension
         if (rotationAngle < Arm.scoreDegrees) {
             viperslideMaxInches = 15.0;
+        }
+        else if (rotationAngle > 95) {
+            viperslideMaxInches = 15;
         }
         else {
             viperslideMaxInches = 35.5;
