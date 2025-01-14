@@ -46,7 +46,7 @@ public class autoLeftOdometry extends LinearOpMode {
                 ))
 
                 //strafe so claw is above the bucket
-                .strafeTo(new Vector2d(-50.5,-50.5))
+                .strafeTo(new Vector2d(-53.5,-48.5))
 
                 //rotate arm extend viperslides and drop sample into bucket, then deextend viperslides to 15 inches
                 .stopAndAdd(new SequentialAction(
@@ -67,12 +67,12 @@ public class autoLeftOdometry extends LinearOpMode {
                 //move to rightmost sample
                 .turnTo(Math.toRadians(90))
                 .afterTime(0.3, arm.moveArmToCollectSampleDegrees())
-                .strafeTo(new Vector2d(-52, -46.0))
+                .strafeTo(new Vector2d(-51.2, -45.5))
 //                .waitSeconds(0.25)
                 //rotate arm and close claw
                 .stopAndAdd(new SequentialAction(
 //                        arm.moveArmToCollectSampleDegrees(),
-                        new SleepAction(0.5),
+                        new SleepAction(0.7),
                         intake.closeClaw(),
                         new SleepAction(0.28),
                         arm.moveArmToScoreDegrees()
@@ -90,7 +90,7 @@ public class autoLeftOdometry extends LinearOpMode {
                 ))
 
                 //strafe so claw is above the bucket
-                .strafeTo(new Vector2d(-50.5,-50.5))
+                .strafeTo(new Vector2d(-53.5,-48.5))
 
                 //extend viperslides and drop sample in bucket
                 //dextend viperslides to 15 inches
@@ -109,8 +109,8 @@ public class autoLeftOdometry extends LinearOpMode {
 
                 //move to middle sample
                 .turnTo(Math.toRadians(90))
-                .afterTime(0.3, arm.moveArmToCollectSampleDegrees())
-                .strafeTo(new Vector2d(-61.3, -44))
+                .afterTime(0.6, arm.moveArmToCollectSampleDegrees())
+                .strafeTo(new Vector2d(-61.8, -44))
 //                .waitSeconds(0.25)
                 //rotate arm and close claw
                 .stopAndAdd(new SequentialAction(
