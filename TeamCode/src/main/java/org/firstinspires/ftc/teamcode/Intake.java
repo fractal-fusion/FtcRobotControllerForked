@@ -2,12 +2,14 @@ package org.firstinspires.ftc.teamcode;
 
 import androidx.annotation.NonNull;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
 
+@Config
 public class Intake {
     //declare the servos
     public Servo claw;
@@ -21,8 +23,8 @@ public class Intake {
     private boolean clawIsOpen = true;
 
     //define preset degrees for the opening and closing of the claw
-    public static final double open = 0.25;
-    public static final double close = 0.0;
+    public static final double open = 0.0;
+    public static final double close = 0.15;
 
     //define the two wrist positions position.
     final double wristHorizontalPos = 0.0;
@@ -30,7 +32,7 @@ public class Intake {
 
     //wrist control
     double wristIncrementTotal = 0.0;
-    double wristIncrement = 0.05;
+    double wristIncrement = 0.01;
 
     private OpMode opMode;
 
@@ -49,7 +51,11 @@ public class Intake {
     //sets the open or close mode of the claw
     public void mode(double servoPos) {
         claw.setPosition(servoPos);
-        opMode.telemetry.addData("claw position", servoPos);
+    }
+
+    public void telemetry() {
+        opMode.telemetry.addData("claw position:", claw.getPosition());
+        opMode.telemetry.addData("wrist position:", wrist.getPosition());
     }
 
     public void toggleClaw(Gamepad gamepad) {

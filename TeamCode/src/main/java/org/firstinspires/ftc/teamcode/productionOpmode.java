@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name="productionOpmode Meet 2", group="Robot")
+@TeleOp(name="productionOpmode League Champs", group="Robot")
 public class productionOpmode extends LinearOpMode {
 
     @Override
@@ -20,13 +20,13 @@ public class productionOpmode extends LinearOpMode {
         telemetry.addLine("Robot Ready.");
         telemetry.update();
 
-        //move subsystems to starting positions
-        intake.mode(Intake.open);
-
         waitForStart();
 
         while (opModeIsActive())
         {
+            //intake telemetry
+            intake.telemetry();
+
             //gamepad 1 driving
             drivetrain.drive(gamepad1);
 
