@@ -38,7 +38,7 @@ public class Arm {
     private final double viperslideSpeedInchesPerSecond = 8.5;
 
     //the amount of inches or degrees to increment on each run of the opmode loop
-    private final double viperslideIncrementInches = 0.1;
+    private final double viperslideIncrementInches = 0.25;
     private final double rotationIncrementDegrees = 1.5;
 
     //Subtracted from the max inches of the viperslide to limit its extension
@@ -61,7 +61,7 @@ public class Arm {
                                                 / (pulleyDiameterInches * Math.PI);
 
     //define preset positions of the arm.
-    public final static double clearBarrierDegrees = 13.0;
+    public final static double clearBarrierDegrees = 15.0;
     public final static double scoreDegrees = 72.0;
     public final static double hangExtendedDegrees = 100.0;
     public final static double hangClimbDegrees = 6.0;
