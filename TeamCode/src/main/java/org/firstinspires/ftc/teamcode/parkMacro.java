@@ -17,7 +17,7 @@ public class parkMacro extends LinearOpMode {
         //grab sample
         intake.mode(Intake.close);
         sleep(100);
-        arm.moveArm(Arm.collectionDegrees);
+        arm.moveArmMacro(Arm.collectionDegrees);
         sleep(1000);
 
         //park

@@ -51,6 +51,9 @@ public class Arm {
     //rotation angle variable
     private double rotationAngle;
 
+    //arm offset
+    private double armOffsetMaxDegrees = 5;
+
     //calculate conversion factors
     private final double encoderTicksPerDegrees = (rotationEncoderPulsesPerRevolution * rotationGearReduction)
                                                 / (360);
@@ -60,7 +63,6 @@ public class Arm {
     //define preset positions of the arm.
     public final static double clearBarrierDegrees = 13.0;
     public final static double scoreDegrees = 72.0;
-
     public final static double hangExtendedDegrees = 100.0;
     public final static double hangClimbDegrees = 6.0;
     public final static double collectionDegrees = 3.0;
@@ -148,9 +150,30 @@ public class Arm {
         viperslideRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
+    //legacy function for macro autos
     //main function for controlling the position of the arm in degrees.
-    public void moveArm(double degrees) {
+    public void moveArmMacro(double degrees) {
         rotationAngle = degrees;
+        int target = (int) (rotationAngle * encoderTicksPerDegrees);
+        armRotationLeft.setTargetPosition(target);
+        armRotationRight.setTargetPosition(target);
+
+        if (rotationAngle < 5){
+            armRotationLeft.setPower(0.5);
+            armRotationRight.setPower(0.5);
+        }
+        else {
+            armRotationLeft.setPower(0.9);
+            armRotationRight.setPower(0.9);
+        }
+
+        armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
+    public void moveArm(double degrees, Gamepad gamepad) {
+        rotationAngle = degrees + (armOffsetMaxDegrees * (gamepad.left_trigger + -gamepad.right_trigger));
+
         int target = (int) (rotationAngle * encoderTicksPerDegrees);
         armRotationLeft.setTargetPosition(target);
         armRotationRight.setTargetPosition(target);

@@ -32,7 +32,7 @@ public class Intake {
 
     //wrist control
     double wristIncrementTotal = 0.0;
-    double wristIncrement = 0.01;
+    double wristIncrement = 0.05;
 
     private OpMode opMode;
 

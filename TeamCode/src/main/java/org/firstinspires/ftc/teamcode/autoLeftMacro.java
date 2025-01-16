@@ -17,7 +17,7 @@ public class autoLeftMacro extends LinearOpMode {
         //grab sample
         intake.mode(Intake.close);
         sleep(100);
-        arm.moveArm(Arm.collectionDegrees);
+        arm.moveArmMacro(Arm.collectionDegrees);
         sleep(1000);
 
         //move to the bucket (tested)
@@ -65,7 +65,7 @@ public class autoLeftMacro extends LinearOpMode {
         drivetrain.backLeft.setPower(0);
         drivetrain.backRight.setPower(0);
         //rotate viper slides
-        arm.moveArm(Arm.scoreDegrees);
+        arm.moveArmMacro(Arm.scoreDegrees);
         sleep(2000);
         //extend slides
         arm.moveViperslides(35);
@@ -106,7 +106,7 @@ public class autoLeftMacro extends LinearOpMode {
         drivetrain.backLeft.setPower(0);
         drivetrain.backRight.setPower(0);
         sleep(30);
-        arm.moveArm(Arm.collectionDegrees);
+        arm.moveArmMacro(Arm.collectionDegrees);
         sleep(5000);
 //        //go forward towards sample
 //        drivetrain.frontLeft.setPower(1);

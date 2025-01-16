@@ -11,7 +11,8 @@ import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 public class MeepMeepTesting {
     public static void main(String[] args) {
         double tilelength = 24;
-        double specimenx = 26, specimeny = -48.1;
+        double collectspecimenx = 2*tilelength, collectspecimeny = -48.1;
+        double scorespecimeny = -32;
         int specimendegrees = 337;
 
         MeepMeep meepMeep = new MeepMeep(600);
@@ -27,7 +28,7 @@ public class MeepMeepTesting {
 //                .stopAndAdd(intake.closeClaw())
 
                 //show to human player where all the specimens should be placed
-                .splineTo(new Vector2d(specimenx, specimeny), Math.toRadians(specimendegrees))
+                .splineTo(new Vector2d(collectspecimenx, collectspecimeny), Math.toRadians(specimendegrees))
                 //prime viperslides for specimen
 //                .stopAndAdd(arm.primeScoreSpecimenViperslides())
                 .waitSeconds(2)
@@ -56,7 +57,12 @@ public class MeepMeepTesting {
 
                 //go back for second specimen
                 .turnTo(Math.toRadians(specimendegrees))
-                .strafeTo(new Vector2d(specimenx, specimeny))
+                .strafeTo(new Vector2d(collectspecimenx, collectspecimeny))
+
+                //score second specimen
+                .strafeToLinearHeading(new Vector2d(2,-34), Math.toRadians(90))
+                .waitSeconds(1)
+
                 .build());
 
 

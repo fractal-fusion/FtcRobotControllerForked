@@ -20,6 +20,9 @@ public class productionOpmode extends LinearOpMode {
         telemetry.addLine("Robot Ready.");
         telemetry.update();
 
+        //degree variable for arm
+        double degrees = 0;
+
         waitForStart();
 
         while (opModeIsActive())
@@ -38,21 +41,23 @@ public class productionOpmode extends LinearOpMode {
             //gamepad 2 intake control
             intake.toggleClaw(gamepad2);
 
+            arm.moveArm(degrees, gamepad2);
+
             //preset positions for gamepad2
             if (gamepad2.dpad_down) {
-                arm.moveArm(Arm.collectionDegrees);
+                degrees = Arm.collectionDegrees;
             }
             else if (gamepad2.left_bumper) {
-                arm.moveArm(Arm.clearBarrierDegrees);
+                degrees = Arm.clearBarrierDegrees;
             }
             else if (gamepad2.y) {
-                arm.moveArm(Arm.scoreDegrees);
+                degrees = Arm.scoreDegrees;
             }
             else if (gamepad2.dpad_left) {
-                arm.moveArm(Arm.hangExtendedDegrees);
+                degrees = Arm.hangExtendedDegrees;
             }
             else if (gamepad2.dpad_right) {
-                arm.moveArm(Arm.hangClimbDegrees);
+                degrees = Arm.hangClimbDegrees;
             }
 
             //old intake control

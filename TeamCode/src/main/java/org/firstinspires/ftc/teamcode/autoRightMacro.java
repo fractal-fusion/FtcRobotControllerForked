@@ -17,11 +17,11 @@ public class autoRightMacro extends LinearOpMode {
         //grab sample
         intake.mode(Intake.close);
         sleep(1500);
-        arm.moveArm(Arm.collectionDegrees);
+        arm.moveArmMacro(Arm.collectionDegrees);
         sleep(1000);
 
         //move arm to correct degrees
-        arm.moveArm(Arm.scoreDegrees);
+        arm.moveArmMacro(Arm.scoreDegrees);
         sleep(1000);
         arm.moveViperslides(11);
         sleep(1000);
@@ -59,7 +59,7 @@ public class autoRightMacro extends LinearOpMode {
         //move arm down
         arm.moveViperslides(0);
         sleep(1000);
-        arm.moveArm(Arm.collectionDegrees);
+        arm.moveArmMacro(Arm.collectionDegrees);
         sleep(1000);
 
 //        //strafe right
