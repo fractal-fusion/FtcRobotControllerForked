@@ -53,10 +53,10 @@ public class Intake {
         claw.setPosition(servoPos);
     }
 
-    public void telemetry() {
-        opMode.telemetry.addData("claw position:", claw.getPosition());
-        opMode.telemetry.addData("wrist position:", wrist.getPosition());
-    }
+//    public void telemetry() {
+//        opMode.telemetry.addData("claw position:", claw.getPosition());
+//        opMode.telemetry.addData("wrist position:", wrist.getPosition());
+//    }
 
     public void toggleClaw(Gamepad gamepad) {
         //copy the correct previous and current gamepad values in order for the debounce to work

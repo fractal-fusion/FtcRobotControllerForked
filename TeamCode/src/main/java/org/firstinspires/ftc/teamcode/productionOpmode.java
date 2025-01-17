@@ -28,7 +28,7 @@ public class productionOpmode extends LinearOpMode {
         while (opModeIsActive())
         {
             //intake telemetry
-            intake.telemetry();
+//            intake.telemetry();
 
             //gamepad 1 driving
             drivetrain.drive(gamepad1);

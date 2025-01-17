@@ -131,10 +131,10 @@ public class Arm {
         viperslideLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         viperslideRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        opMode.telemetry.addData("viperslide target: ", target);
-        opMode.telemetry.addData("viperslide inches: ", viperslideIncrementTotalInches);
-        opMode.telemetry.addData("viperslide max inches", viperslideMaxInches);
-        opMode.telemetry.update();
+//        opMode.telemetry.addData("viperslide target: ", target);
+//        opMode.telemetry.addData("viperslide inches: ", viperslideIncrementTotalInches);
+//        opMode.telemetry.addData("viperslide max inches", viperslideMaxInches);
+//        opMode.telemetry.update();
     }
 
     public void moveViperslides(double inches) {
@@ -205,9 +205,9 @@ public class Arm {
         armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        opMode.telemetry.addData("arm degrees: ", rotationAngle);
-        opMode.telemetry.addData("arm target: ", target);
-        opMode.telemetry.update();
+//        opMode.telemetry.addData("arm degrees: ", rotationAngle);
+//        opMode.telemetry.addData("arm target: ", target);
+//        opMode.telemetry.update();
     }
 
     // -----------------------------ROADRUNNER ACTIONS ------------------------------------
