@@ -18,37 +18,45 @@ public class autoRightOdometry extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         double tilelength = 24;
-        double specimenx = 26, specimeny = -48.1;
-        int specimendegrees = 337;
+        double collectspecimenx = tilelength, collectspecimeny = -64;
+        double scorespecimeny = -32;
+        double specimendegrees = 0;
 
         Intake intake = new Intake(this);
         Arm arm = new Arm(this);
 
         //initialize beginning pose and mecanum drive object
-        Pose2d initialPose = new Pose2d(0, -62, Math.toRadians(90));
+        Pose2d initialPose = new Pose2d(tilelength, -62, Math.toRadians(90));
         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
 
         Action auto = drive.actionBuilder(initialPose)
                 //close claw
-                .stopAndAdd(intake.closeClaw())
+                .stopAndAdd(new SequentialAction(
+                        intake.closeClaw(),
+                        intake.rotateWristToHorizontal(),
+                        arm.moveArmToScoreDegrees(),
+                        new SleepAction(0.5),
+                        arm.primeScoreSpecimenViperslides()
+                ))
 
                 //show to human player where all the specimens should be placed
-                .splineTo(new Vector2d(specimenx, specimeny), Math.toRadians(specimendegrees))
+//                .strafeTo(new Vector2d(collectspecimenx, collectspecimeny))
+//                .turnTo(Math.toRadians(specimendegrees))
                 //prime viperslides for specimen
-                .stopAndAdd(arm.primeScoreSpecimenViperslides())
-                .waitSeconds(2)
+//                .stopAndAdd(arm.primeScoreSpecimenViperslides())
+//                .waitSeconds(2)
 
                 //go to specimen bar and score first specimen
-                // move arm
-                .stopAndAdd(arm.moveArmToScoreDegrees())
+//                // move arm
+//                .stopAndAdd(arm.moveArmToScoreDegrees())
                 .waitSeconds(0.5)
-                .strafeToLinearHeading(new Vector2d(2,-34), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(2,scorespecimeny), Math.toRadians(90))
                 .waitSeconds(1)
 
                 //raise viperslides to score the specimen, then open claw and deextend viperslides and move arm down
                 .stopAndAdd(new SequentialAction(
                         arm.scoreSpecimenViperslides(),
-                        new SleepAction(0.3),
+                        new SleepAction(1),
                         intake.openClaw()
 //                        arm.retractViperslides()
 //                        arm.moveArmtoRestPosition(),
@@ -58,48 +66,55 @@ public class autoRightOdometry extends LinearOpMode {
                 //strafe away from the bar
                 .strafeTo(new Vector2d(2,-38))
 
-                .stopAndAdd(arm.primeScoreSpecimenViperslides())
+                .stopAndAdd(new SequentialAction(
+                        arm.moveArmToPrimeCollectionDegrees()
+                ))
 
                 //go back for second specimen
                 .turnTo(Math.toRadians(specimendegrees))
-                .strafeTo(new Vector2d(specimenx, specimeny))
+                .strafeTo(new Vector2d(collectspecimenx, collectspecimeny))
                 .waitSeconds(2)
+
+                .stopAndAdd(new SequentialAction(
+                        arm.primeScoreSpecimenViperslides(),
+                        new SleepAction(1)
+                ))
 
                 //collect second specimen
                 .stopAndAdd(new SequentialAction(
                         arm.moveArmToCollectSpecimenDegrees(),
-                        new SleepAction(0.5),
+                        new SleepAction(1),
                         intake.closeClaw(),
-                        new SleepAction(0.28),
+                        new SleepAction(1),
                         arm.moveArmToScoreDegrees()
                 ))
 
                 //score second specimen
-                .strafeToLinearHeading(new Vector2d(2,-34), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(-4 ,scorespecimeny), Math.toRadians(90))
                 .waitSeconds(1)
 
                 //raise viperslides to score the specimen, then open claw and deextend viperslides and move arm down
                 .stopAndAdd(new SequentialAction(
                         arm.scoreSpecimenViperslides(),
-                        new SleepAction(0.3),
-                        intake.openClaw()
-//                        arm.retractViperslides()
-//                        arm.moveArmtoRestPosition(),
-//                        new SleepAction(1.8)
+                        new SleepAction(1),
+                        intake.openClaw(),
+                        arm.retractViperslides(),
+                        arm.moveArmtoRestPosition(),
+                        new SleepAction(1.8)
                 ))
 
                 //START PUSHING
 
-//                //strafe away from the bar
-//                .strafeTo(new Vector2d(2,-38))
-//                //move to colored samples to prepare pushing first sample
-//                .turnTo(Math.toRadians(0))
-//                .strafeTo(new Vector2d(37,-34))
-//                .strafeTo(new Vector2d(37, -8))
-//                .strafeTo(new Vector2d(45,-8))
-//
-//                //push first sample into zone
-//                .strafeTo(new Vector2d(48,-50))
+                //strafe away from the bar
+                .strafeTo(new Vector2d(-4,-38))
+                //move to colored samples to prepare pushing first sample
+                .turnTo(Math.toRadians(0))
+                .strafeTo(new Vector2d(37,-34))
+                .strafeTo(new Vector2d(37, -8))
+                .strafeTo(new Vector2d(45,-8))
+
+                //push first sample into zone
+                .strafeTo(new Vector2d(48,-50))
 //
 //                //rise back up to prepare pushing second sample
 //                .strafeTo(new Vector2d(47.5, -8))

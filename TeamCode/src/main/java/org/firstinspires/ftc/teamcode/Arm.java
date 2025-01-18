@@ -241,6 +241,35 @@ public class Arm {
         };
     }
 
+    public Action moveArmToPrimeCollectionDegrees() {
+        return new Action() {
+            private boolean initialized = false;
+            private int target = (int) (15 * encoderTicksPerDegrees);
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                if (!initialized) {
+                    armRotationLeft.setTargetPosition(target);
+                    armRotationRight.setTargetPosition(target);
+
+                    armRotationLeft.setPower(0.9);
+                    armRotationRight.setPower(0.9);
+
+                    armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                    initialized = true;
+                }
+                if (armRotationLeft.getCurrentPosition() < target) {
+                    packet.put("armposition", armRotationLeft.getCurrentPosition());
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        };
+    }
+
     public Action moveArmToCollectSampleDegrees() {
         return new Action() {
             private boolean initialized = false;
@@ -423,7 +452,7 @@ public class Arm {
         return new Action() {
             private boolean initialized = false;
             //extend 15 inches to score the specimen on the high rung
-            private int target = (int) (13 * encoderTicksPerInches);
+            private int target = (int) (6 * encoderTicksPerInches);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {

@@ -24,7 +24,7 @@ public class Intake {
 
     //define preset degrees for the opening and closing of the claw
     public static final double open = 0.0;
-    public static final double close = 0.15;
+    public static final double close = 0.24;
 
     //define the two wrist positions position.
     final double wristHorizontalPos = 0.0;
@@ -53,10 +53,10 @@ public class Intake {
         claw.setPosition(servoPos);
     }
 
-//    public void telemetry() {
-//        opMode.telemetry.addData("claw position:", claw.getPosition());
-//        opMode.telemetry.addData("wrist position:", wrist.getPosition());
-//    }
+    public void telemetry() {
+        opMode.telemetry.addData("claw position:", claw.getPosition());
+        opMode.telemetry.addData("wrist position:", wrist.getPosition());
+    }
 
     public void toggleClaw(Gamepad gamepad) {
         //copy the correct previous and current gamepad values in order for the debounce to work
