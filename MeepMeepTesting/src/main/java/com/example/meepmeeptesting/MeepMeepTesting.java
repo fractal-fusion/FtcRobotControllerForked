@@ -9,10 +9,12 @@ import com.noahbres.meepmeep.MeepMeep;
 import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
 import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
+import java.util.Vector;
+
 public class MeepMeepTesting {
     public static void main(String[] args) {
         double tilelength = 24;
-        double collectspecimenx = tilelength, collectspecimeny = -62;
+        double collectspecimenx = tilelength + 2, collectspecimeny = -62;
         double scorespecimeny = -32;
         double specimendegrees = 0;
 
@@ -39,7 +41,7 @@ public class MeepMeepTesting {
                 // move arm
 //                .stopAndAdd(arm.moveArmToScoreDegrees())
                 .waitSeconds(0.5)
-                .strafeToLinearHeading(new Vector2d(2,scorespecimeny), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(0 ,scorespecimeny), Math.toRadians(90))
                 .waitSeconds(1)
 
                 //raise viperslides to score the specimen, then open claw and deextend viperslides and move arm down
@@ -59,11 +61,13 @@ public class MeepMeepTesting {
 
                 //spline to pushing
                 .setTangent(Math.toRadians(90))
-                .splineTo(new Vector2d(35.7, -33.6), Math.toRadians(90))
-                .splineTo(new Vector2d(47.2, -8.2), Math.toRadians(0))
+                .splineTo(new Vector2d(38.2, -27.6), Math.toRadians(80))
+                .splineTo(new Vector2d(47.2, -13.2), Math.toRadians(0))
 
                 //push first sample into zone
-                .strafeTo(new Vector2d(48,-48), new TranslationalVelConstraint(80))
+                .strafeTo(new Vector2d(47.2,-56.5))
+                //back out
+                .strafeTo(new Vector2d(47.2, -50))
 
                 //prime collection arm and viperslides
                 //go for second specimen
@@ -71,7 +75,7 @@ public class MeepMeepTesting {
                 //intake second specimen
 
                 //score second specimen
-                .strafeToLinearHeading(new Vector2d(0 ,scorespecimeny), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(-2 ,scorespecimeny), Math.toRadians(90))
 
                 //prime collection arm and viperslides
                 //go for third specimen
@@ -79,7 +83,7 @@ public class MeepMeepTesting {
                 //intake third specimen
 
                 //score third specimen
-                .strafeToLinearHeading(new Vector2d(-2 ,scorespecimeny), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(-4 ,scorespecimeny-1), Math.toRadians(90))
 
                 //park
                 .strafeTo(new Vector2d(47.0, -57.3))

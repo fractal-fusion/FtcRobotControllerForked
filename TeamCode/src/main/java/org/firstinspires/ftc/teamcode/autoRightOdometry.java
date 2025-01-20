@@ -19,9 +19,8 @@ public class autoRightOdometry extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         double tilelength = 24;
-        double collectspecimenx = tilelength, collectspecimeny = -64;
+        double collectspecimenx = tilelength + 4, collectspecimeny = -70;
         double scorespecimeny = -32;
-        double specimendegrees = 0;
 
         Intake intake = new Intake(this);
         Arm arm = new Arm(this);
@@ -50,7 +49,7 @@ public class autoRightOdometry extends LinearOpMode {
                 //go to specimen bar and score first specimen
 //                // move arm
 //                .stopAndAdd(arm.moveArmToScoreDegrees())
-                .strafeToLinearHeading(new Vector2d(2,scorespecimeny), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(-1, scorespecimeny), Math.toRadians(90))
                 .waitSeconds(0.3)
 
                 //raise viperslides to score the specimen, then open claw and deextend viperslides and move arm down
@@ -64,7 +63,7 @@ public class autoRightOdometry extends LinearOpMode {
                 ))
 
                 //strafe away from the bar
-                .strafeTo(new Vector2d(2,-38))
+                .strafeTo(new Vector2d(0,-43))
 
                 .stopAndAdd(new SequentialAction(
                         arm.retractViperslides(),
@@ -73,11 +72,13 @@ public class autoRightOdometry extends LinearOpMode {
 
                 //spline to pushing
                 .setTangent(Math.toRadians(90))
-                .splineTo(new Vector2d(35.7, -33.6), Math.toRadians(90))
-                .splineTo(new Vector2d(47.2, -8.2), Math.toRadians(0))
+                .splineTo(new Vector2d(38.2, -27.6), Math.toRadians(80))
+                .splineTo(new Vector2d(47.2, -13.2), Math.toRadians(0))
 
                 //push first sample into zone
-                .strafeTo(new Vector2d(48,-48), new TranslationalVelConstraint(80))
+                .strafeTo(new Vector2d(48,-58.5))
+                //back out
+                .strafeTo(new Vector2d(48,-50))
 
                 //go for second specimen
                 .strafeTo(new Vector2d(collectspecimenx, collectspecimeny))
@@ -86,13 +87,14 @@ public class autoRightOdometry extends LinearOpMode {
                         arm.moveArmToPrimeCollectionDegrees(),
                         arm.slowPrimeScoreSpecimenViperslides(),
                         arm.moveArmToCollectSpecimenDegrees(),
+                        new SleepAction(0.3),
                         intake.closeClaw(),
                         new SleepAction(0.3),
                         arm.moveArmToScoreDegrees()
                 ))
 
                 //score second specimen
-                .strafeToLinearHeading(new Vector2d(0 ,scorespecimeny), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(-3 ,scorespecimeny), Math.toRadians(90))
                 .stopAndAdd(new SequentialAction(
                         arm.scoreSpecimenViperslides(),
                         new SleepAction(0.3),
@@ -106,13 +108,14 @@ public class autoRightOdometry extends LinearOpMode {
                 .stopAndAdd(new SequentialAction(
                         arm.slowPrimeScoreSpecimenViperslides(),
                         arm.moveArmToCollectSpecimenDegrees(),
+                        new SleepAction(0.3),
                         intake.closeClaw(),
                         new SleepAction(0.3),
                         arm.moveArmToScoreDegrees()
                 ))
 
                 //score third specimen
-                .strafeToLinearHeading(new Vector2d(0 ,scorespecimeny), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(-5 ,scorespecimeny+1), Math.toRadians(90))
                 .stopAndAdd(new SequentialAction(
                         arm.scoreSpecimenViperslides(),
                         new SleepAction(0.3),

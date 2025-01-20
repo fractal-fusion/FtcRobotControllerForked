@@ -61,7 +61,7 @@ public class Arm {
                                                 / (pulleyDiameterInches * Math.PI);
 
     //define preset positions of the arm.
-    public final static double clearBarrierDegrees = 15.0;
+    public final static double clearBarrierDegrees = 13.0;
     public final static double scoreDegrees = 72.0;
     public final static double hangExtendedDegrees = 100.0;
     public final static double hangClimbDegrees = 6.0;
@@ -205,9 +205,9 @@ public class Arm {
         armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-//        opMode.telemetry.addData("arm degrees: ", rotationAngle);
-//        opMode.telemetry.addData("arm target: ", target);
-//        opMode.telemetry.update();
+        opMode.telemetry.addData("arm degrees: ", rotationAngle);
+        opMode.telemetry.addData("arm target: ", target);
+        opMode.telemetry.update();
     }
 
     // -----------------------------ROADRUNNER ACTIONS ------------------------------------
@@ -244,7 +244,7 @@ public class Arm {
     public Action moveArmToPrimeCollectionDegrees() {
         return new Action() {
             private boolean initialized = false;
-            private int target = (int) (15 * encoderTicksPerDegrees);
+            private int target = (int) (13 * encoderTicksPerDegrees);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
@@ -304,7 +304,7 @@ public class Arm {
         return new Action() {
             private boolean initialized = false;
             //five degrees allows for collection of the specimen from the ground
-            private int target = (int) (5 * encoderTicksPerDegrees);
+            private int target = (int) (6 * encoderTicksPerDegrees);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
@@ -333,7 +333,6 @@ public class Arm {
     public Action moveArmtoRestPosition() {
         return new Action() {
             private boolean initialized = false;
-            //five degrees allows for collection of the specimen from the ground
             private int target = 0;
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
@@ -349,13 +348,7 @@ public class Arm {
 
                     initialized = true;
                 }
-                if (armRotationLeft.getCurrentPosition() < target) {
-                    packet.put("armposition", armRotationLeft.getCurrentPosition());
-                    return true;
-                }
-                else {
-                    return false;
-                }
+                return false;
             }
         };
     }
@@ -392,7 +385,7 @@ public class Arm {
     public Action retractViperslides() {
         return new Action() {
             private boolean initialized = false;
-            int target = 0;
+            private int target = 0;
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
@@ -407,13 +400,7 @@ public class Arm {
 
                     initialized = true;
                 }
-                if (viperslideLeft.getCurrentPosition() > target) {
-                    packet.put("viperslidepos", viperslideLeft.getCurrentPosition());
-                    return true;
-                }
-                else {
-                    return false;
-                }
+                return false;
             }
         };
     }
@@ -452,7 +439,7 @@ public class Arm {
         return new Action() {
             private boolean initialized = false;
             //extend 15 inches to score the specimen on the high rung
-            private int target = (int) (6 * encoderTicksPerInches);
+            private int target = (int) (5 * encoderTicksPerInches);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
@@ -482,7 +469,7 @@ public class Arm {
         return new Action() {
             private boolean initialized = false;
             //11 inches to touch the high rung but not score the specimen
-            private int target = (int) (11 * encoderTicksPerInches);
+            private int target = (int) (9 * encoderTicksPerInches);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
