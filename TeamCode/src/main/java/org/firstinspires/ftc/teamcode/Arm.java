@@ -508,6 +508,36 @@ public class Arm {
         };
     }
 
+    public Action slowPrimeScoreSpecimenViperslides() {
+        return new Action() {
+            private boolean initialized = false;
+            //11 inches to touch the high rung but not score the specimen
+            private int target = (int) (11 * encoderTicksPerInches);
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                if (!initialized) {
+                    viperslideLeft.setTargetPosition(target);
+                    viperslideRight.setTargetPosition(target);
+
+                    viperslideLeft.setPower(0.6);
+                    viperslideRight.setPower(0.6);
+
+                    viperslideLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    viperslideRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                    initialized = true;
+                }
+                if (viperslideLeft.getCurrentPosition() < target) {
+                    packet.put("viperslidepos", viperslideLeft.getCurrentPosition());
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        };
+    }
+
     //SECOND IMPLEMENTATION, bang bang control
 //    public Action moveArmToBucketDegrees() {
 //        return new Action() {

@@ -5,6 +5,7 @@ import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.SleepAction;
+import com.acmerobotics.roadrunner.TranslationalVelConstraint;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -35,7 +36,7 @@ public class autoRightOdometry extends LinearOpMode {
                         intake.closeClaw(),
                         intake.rotateWristToHorizontal(),
                         arm.moveArmToScoreDegrees(),
-                        new SleepAction(0.5),
+                        new SleepAction(0.35),
                         arm.primeScoreSpecimenViperslides()
                 ))
 
@@ -49,14 +50,13 @@ public class autoRightOdometry extends LinearOpMode {
                 //go to specimen bar and score first specimen
 //                // move arm
 //                .stopAndAdd(arm.moveArmToScoreDegrees())
-                .waitSeconds(0.5)
                 .strafeToLinearHeading(new Vector2d(2,scorespecimeny), Math.toRadians(90))
-                .waitSeconds(1)
+                .waitSeconds(0.3)
 
                 //raise viperslides to score the specimen, then open claw and deextend viperslides and move arm down
                 .stopAndAdd(new SequentialAction(
                         arm.scoreSpecimenViperslides(),
-                        new SleepAction(1),
+                        new SleepAction(0.3),
                         intake.openClaw()
 //                        arm.retractViperslides()
 //                        arm.moveArmtoRestPosition(),
@@ -67,101 +67,66 @@ public class autoRightOdometry extends LinearOpMode {
                 .strafeTo(new Vector2d(2,-38))
 
                 .stopAndAdd(new SequentialAction(
-                        arm.moveArmToPrimeCollectionDegrees()
+                        arm.retractViperslides(),
+                        arm.moveArmtoRestPosition()
                 ))
 
-                //go back for second specimen
-                .turnTo(Math.toRadians(specimendegrees))
+                //spline to pushing
+                .setTangent(Math.toRadians(90))
+                .splineTo(new Vector2d(35.7, -33.6), Math.toRadians(90))
+                .splineTo(new Vector2d(47.2, -8.2), Math.toRadians(0))
+
+                //push first sample into zone
+                .strafeTo(new Vector2d(48,-48), new TranslationalVelConstraint(80))
+
+                //go for second specimen
                 .strafeTo(new Vector2d(collectspecimenx, collectspecimeny))
-                .waitSeconds(2)
-
+                //intake second specimen
                 .stopAndAdd(new SequentialAction(
-                        arm.primeScoreSpecimenViperslides(),
-                        new SleepAction(1)
-                ))
-
-                //collect second specimen
-                .stopAndAdd(new SequentialAction(
+                        arm.moveArmToPrimeCollectionDegrees(),
+                        arm.slowPrimeScoreSpecimenViperslides(),
                         arm.moveArmToCollectSpecimenDegrees(),
-                        new SleepAction(1),
                         intake.closeClaw(),
-                        new SleepAction(1),
+                        new SleepAction(0.3),
                         arm.moveArmToScoreDegrees()
                 ))
 
                 //score second specimen
-                .strafeToLinearHeading(new Vector2d(-4 ,scorespecimeny), Math.toRadians(90))
-                .waitSeconds(1)
-
-                //raise viperslides to score the specimen, then open claw and deextend viperslides and move arm down
+                .strafeToLinearHeading(new Vector2d(0 ,scorespecimeny), Math.toRadians(90))
                 .stopAndAdd(new SequentialAction(
                         arm.scoreSpecimenViperslides(),
-                        new SleepAction(1),
+                        new SleepAction(0.3),
                         intake.openClaw(),
-                        arm.retractViperslides(),
-                        arm.moveArmtoRestPosition(),
-                        new SleepAction(1.8)
+                        arm.moveArmToPrimeCollectionDegrees()
                 ))
 
-                //START PUSHING
+                //go for third specimen
+                .stopAndAdd(new SequentialAction(
+                        //commented out in case the above hits the low specimen rung
+//                        arm.moveArmToPrimeCollectionDegrees()
+                ))
+                .strafeToLinearHeading(new Vector2d(collectspecimenx, collectspecimeny), Math.toRadians(0))
+                //intake third specimen
+                .stopAndAdd(new SequentialAction(
+                        arm.slowPrimeScoreSpecimenViperslides(),
+                        arm.moveArmToCollectSpecimenDegrees(),
+                        intake.closeClaw(),
+                        new SleepAction(0.3),
+                        arm.moveArmToScoreDegrees()
+                ))
 
-                //strafe away from the bar
-                .strafeTo(new Vector2d(-4,-38))
-                //move to colored samples to prepare pushing first sample
-                .turnTo(Math.toRadians(0))
-                .strafeTo(new Vector2d(37,-34))
-                .strafeTo(new Vector2d(37, -8))
-                .strafeTo(new Vector2d(45,-8))
-
-                //push first sample into zone
-                .strafeTo(new Vector2d(48,-50))
-//
-//                //rise back up to prepare pushing second sample
-//                .strafeTo(new Vector2d(47.5, -8))
-//                .strafeTo(new Vector2d(55,-8))
-//
-//                //push second sample while raising arm to prime collection
-//                .strafeTo(new Vector2d(60,-50))
-//
-//                //grab first specimen
-//                .strafeToLinearHeading(new Vector2d(specimenx,specimeny), Math.toRadians(specimendegrees))
-//                //while strafing prime viperslides
-//                .waitSeconds(1)
-//                //move to collect specimen degrees, close claw
-//
-//                //score first specimen
-//                //move arm to score specimen degrees
-//                .strafeToLinearHeading(new Vector2d(2,-34), Math.toRadians(90))
-//                //extend viperslides
-//                //slide specimen to the right to make room for future specimen
-//                .strafeTo(new Vector2d(6,-34))
-//                //open claw and prime viperslides
-//
-//                //grab second specimen
-//                .strafeToLinearHeading(new Vector2d(specimenx,specimeny), Math.toRadians(specimendegrees))
-//                //move arm to collect specimen degrees and prime viperslides
-//                //close claw
-//
-//                //score second specimen
-//                //move arm to score specimen degrees
-//                .strafeToLinearHeading(new Vector2d(2,-34), Math.toRadians(90))
-//                //extend viperslides
-//                //slide specimen to the right to make room for future specimen
-//                .strafeTo(new Vector2d(6,-34))
-//                //open claw and prime viperslides
-//
-//                //grab third specimen
-//                .strafeToLinearHeading(new Vector2d(specimenx,specimeny), Math.toRadians(specimendegrees))
-//                //move arm to collect specimen degrees and prime viperslides
-//                //close claw
-//
-//                //score third specimen
-//                //move arm to score specimen degrees
-//                .strafeToLinearHeading(new Vector2d(2,-34), Math.toRadians(90))
-//                //extend viperslides, open claw, deextend viperslides, and return to resting position
+                //score third specimen
+                .strafeToLinearHeading(new Vector2d(0 ,scorespecimeny), Math.toRadians(90))
+                .stopAndAdd(new SequentialAction(
+                        arm.scoreSpecimenViperslides(),
+                        new SleepAction(0.3),
+                        intake.openClaw(),
+                        arm.retractViperslides(),
+                        arm.moveArmtoRestPosition()
+                ))
 
                 //park
-                .strafeTo(new Vector2d(46.5, -61))
+                .strafeTo(new Vector2d(47.0, -57.3))
                 .build();
 
         waitForStart();

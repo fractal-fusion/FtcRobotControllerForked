@@ -3,6 +3,7 @@ import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.ProfileAccelConstraint;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.SleepAction;
+import com.acmerobotics.roadrunner.TranslationalVelConstraint;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.noahbres.meepmeep.MeepMeep;
 import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
@@ -52,18 +53,36 @@ public class MeepMeepTesting {
                 ))
 
                 //strafe away from the bar
-                .strafeTo(new Vector2d(2,-38))
+                .strafeTo(new Vector2d(2,-52))
 
-//                .stopAndAdd(arm.primeScoreSpecimenViperslides())
+                //set robot to init position
 
-                //go back for second specimen
-                .turnTo(Math.toRadians(specimendegrees))
+                //spline to pushing
+                .setTangent(Math.toRadians(90))
+                .splineTo(new Vector2d(35.7, -33.6), Math.toRadians(90))
+                .splineTo(new Vector2d(47.2, -8.2), Math.toRadians(0))
+
+                //push first sample into zone
+                .strafeTo(new Vector2d(48,-48), new TranslationalVelConstraint(80))
+
+                //prime collection arm and viperslides
+                //go for second specimen
                 .strafeTo(new Vector2d(collectspecimenx, collectspecimeny))
+                //intake second specimen
 
                 //score second specimen
-                .strafeToLinearHeading(new Vector2d(2,scorespecimeny), Math.toRadians(90))
-                .waitSeconds(1)
+                .strafeToLinearHeading(new Vector2d(0 ,scorespecimeny), Math.toRadians(90))
 
+                //prime collection arm and viperslides
+                //go for third specimen
+                .strafeToLinearHeading(new Vector2d(collectspecimenx, collectspecimeny), Math.toRadians(0))
+                //intake third specimen
+
+                //score third specimen
+                .strafeToLinearHeading(new Vector2d(-2 ,scorespecimeny), Math.toRadians(90))
+
+                //park
+                .strafeTo(new Vector2d(47.0, -57.3))
                 .build());
 
 
