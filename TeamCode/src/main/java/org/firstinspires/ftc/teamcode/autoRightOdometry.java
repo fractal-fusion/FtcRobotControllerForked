@@ -101,10 +101,6 @@ public class autoRightOdometry extends LinearOpMode {
                 ))
 
                 //go for third specimen
-                .stopAndAdd(new SequentialAction(
-                        //commented out in case the above hits the low specimen rung
-//                        arm.moveArmToPrimeCollectionDegrees()
-                ))
                 .strafeToLinearHeading(new Vector2d(collectspecimenx, collectspecimeny), Math.toRadians(0))
                 //intake third specimen
                 .stopAndAdd(new SequentialAction(
