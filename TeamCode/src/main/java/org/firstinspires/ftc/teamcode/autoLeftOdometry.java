@@ -35,7 +35,7 @@ public class autoLeftOdometry extends LinearOpMode {
 //                ))
 
                 //initial move to bucket
-                .splineTo(new Vector2d(-47,-47), Math.toRadians(240))
+                .splineTo(new Vector2d(-47,-47), Math.toRadians(225))
 
 //                .waitSeconds(0.25)
                 
