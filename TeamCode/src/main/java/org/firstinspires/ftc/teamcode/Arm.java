@@ -385,7 +385,7 @@ public class Arm {
     public Action retractViperslides() {
         return new Action() {
             private boolean initialized = false;
-            private int target = 0;
+            private int target = 10;
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
@@ -399,6 +399,9 @@ public class Arm {
                     viperslideRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
                     initialized = true;
+                }
+                if (viperslideLeft.getCurrentPosition() > target) {
+                    return true;
                 }
                 return false;
             }

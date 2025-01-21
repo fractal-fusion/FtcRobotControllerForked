@@ -78,7 +78,8 @@ public class autoRightOdometry extends LinearOpMode {
                 //push first sample into zone
                 .strafeTo(new Vector2d(48,-58.5))
                 //back out
-                .strafeTo(new Vector2d(48,-50))
+                .strafeTo(new Vector2d(48,-45))
+                .waitSeconds(1)
 
                 //go for second specimen
                 .strafeTo(new Vector2d(collectspecimenx, collectspecimeny))
@@ -87,7 +88,7 @@ public class autoRightOdometry extends LinearOpMode {
                         arm.moveArmToPrimeCollectionDegrees(),
                         arm.slowPrimeScoreSpecimenViperslides(),
                         arm.moveArmToCollectSpecimenDegrees(),
-                        new SleepAction(0.3),
+                        new SleepAction(0.5),
                         intake.closeClaw(),
                         new SleepAction(0.3),
                         arm.moveArmToScoreDegrees()
@@ -99,6 +100,8 @@ public class autoRightOdometry extends LinearOpMode {
                         arm.scoreSpecimenViperslides(),
                         new SleepAction(0.3),
                         intake.openClaw(),
+                        new SleepAction(0.3),
+                        arm.retractViperslides(),
                         arm.moveArmToPrimeCollectionDegrees()
                 ))
 
@@ -108,7 +111,7 @@ public class autoRightOdometry extends LinearOpMode {
                 .stopAndAdd(new SequentialAction(
                         arm.slowPrimeScoreSpecimenViperslides(),
                         arm.moveArmToCollectSpecimenDegrees(),
-                        new SleepAction(0.3),
+                        new SleepAction(0.5),
                         intake.closeClaw(),
                         new SleepAction(0.3),
                         arm.moveArmToScoreDegrees()
