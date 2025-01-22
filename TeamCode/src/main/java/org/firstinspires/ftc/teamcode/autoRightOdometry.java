@@ -20,7 +20,7 @@ public class autoRightOdometry extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         double tilelength = 24;
         double collectspecimenx = tilelength + 4, collectspecimeny = -70;
-        double scorespecimeny = -32;
+        double scorespecimeny = -31.5;
 
         Intake intake = new Intake(this);
         Arm arm = new Arm(this);
@@ -95,7 +95,7 @@ public class autoRightOdometry extends LinearOpMode {
                 ))
 
                 //score second specimen
-                .strafeToLinearHeading(new Vector2d(-3 ,scorespecimeny), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(-3 ,scorespecimeny + 0.5), Math.toRadians(90))
                 .stopAndAdd(new SequentialAction(
                         arm.scoreSpecimenViperslides(),
                         new SleepAction(0.3),
@@ -106,7 +106,7 @@ public class autoRightOdometry extends LinearOpMode {
                 ))
 
                 //go for third specimen
-                .strafeToLinearHeading(new Vector2d(collectspecimenx, collectspecimeny), Math.toRadians(0))
+                .strafeToLinearHeading(new Vector2d(collectspecimenx + 3.5, collectspecimeny - 0.4), Math.toRadians(0))
                 //intake third specimen
                 .stopAndAdd(new SequentialAction(
                         arm.slowPrimeScoreSpecimenViperslides(),
@@ -121,14 +121,14 @@ public class autoRightOdometry extends LinearOpMode {
                 .strafeToLinearHeading(new Vector2d(-5 ,scorespecimeny+1), Math.toRadians(90))
                 .stopAndAdd(new SequentialAction(
                         arm.scoreSpecimenViperslides(),
-                        new SleepAction(0.3),
+                        new SleepAction(0.5),
                         intake.openClaw(),
                         arm.retractViperslides(),
                         arm.moveArmtoRestPosition()
                 ))
 
                 //park
-                .strafeTo(new Vector2d(47.0, -57.3))
+                .strafeTo(new Vector2d(55.0, -55.3))
                 .build();
 
         waitForStart();

@@ -385,7 +385,7 @@ public class Arm {
     public Action retractViperslides() {
         return new Action() {
             private boolean initialized = false;
-            private int target = 10;
+            private int target = 20;
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
