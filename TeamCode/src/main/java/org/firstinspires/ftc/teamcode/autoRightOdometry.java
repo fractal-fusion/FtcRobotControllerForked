@@ -55,7 +55,7 @@ public class autoRightOdometry extends LinearOpMode {
                 //raise viperslides to score the specimen, then open claw and deextend viperslides and move arm down
                 .stopAndAdd(new SequentialAction(
                         arm.scoreSpecimenViperslides(),
-                        new SleepAction(0.3),
+                        new SleepAction(0.4),
                         intake.openClaw()
 //                        arm.retractViperslides()
 //                        arm.moveArmtoRestPosition(),
@@ -79,7 +79,7 @@ public class autoRightOdometry extends LinearOpMode {
                 .strafeTo(new Vector2d(48,-58.5))
                 //back out
                 .strafeTo(new Vector2d(48,-45))
-                .waitSeconds(1)
+                .waitSeconds(0.3)
 
                 //go for second specimen
                 .strafeTo(new Vector2d(collectspecimenx, collectspecimeny))
@@ -95,18 +95,18 @@ public class autoRightOdometry extends LinearOpMode {
                 ))
 
                 //score second specimen
-                .strafeToLinearHeading(new Vector2d(-3 ,scorespecimeny + 0.5), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(-3 ,scorespecimeny + 0.2), Math.toRadians(90))
                 .stopAndAdd(new SequentialAction(
                         arm.scoreSpecimenViperslides(),
-                        new SleepAction(0.3),
+                        new SleepAction(0.38),
                         intake.openClaw(),
-                        new SleepAction(0.3),
+//                        new SleepAction(0.3),
                         arm.retractViperslides(),
                         arm.moveArmToPrimeCollectionDegrees()
                 ))
 
                 //go for third specimen
-                .strafeToLinearHeading(new Vector2d(collectspecimenx + 3.5, collectspecimeny - 0.4), Math.toRadians(0))
+                .strafeToLinearHeading(new Vector2d(collectspecimenx + 4, collectspecimeny - 0.5), Math.toRadians(0))
                 //intake third specimen
                 .stopAndAdd(new SequentialAction(
                         arm.slowPrimeScoreSpecimenViperslides(),
@@ -118,11 +118,12 @@ public class autoRightOdometry extends LinearOpMode {
                 ))
 
                 //score third specimen
-                .strafeToLinearHeading(new Vector2d(-5 ,scorespecimeny+1), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(-5 ,scorespecimeny + 1.4), Math.toRadians(90))
                 .stopAndAdd(new SequentialAction(
                         arm.scoreSpecimenViperslides(),
-                        new SleepAction(0.5),
+                        new SleepAction(0.38),
                         intake.openClaw(),
+//                        new SleepAction(0.3),
                         arm.retractViperslides(),
                         arm.moveArmtoRestPosition()
                 ))

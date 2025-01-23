@@ -304,7 +304,7 @@ public class Arm {
         return new Action() {
             private boolean initialized = false;
             //five degrees allows for collection of the specimen from the ground
-            private int target = (int) (6 * encoderTicksPerDegrees);
+            private int target = (int) (6.2 * encoderTicksPerDegrees);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
@@ -385,7 +385,7 @@ public class Arm {
     public Action retractViperslides() {
         return new Action() {
             private boolean initialized = false;
-            private int target = 20;
+            private int target = 40;
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
@@ -442,7 +442,7 @@ public class Arm {
         return new Action() {
             private boolean initialized = false;
             //extend 15 inches to score the specimen on the high rung
-            private int target = (int) (5 * encoderTicksPerInches);
+            private int target = (int) (4 * encoderTicksPerInches);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
@@ -472,7 +472,7 @@ public class Arm {
         return new Action() {
             private boolean initialized = false;
             //11 inches to touch the high rung but not score the specimen
-            private int target = (int) (9 * encoderTicksPerInches);
+            private int target = (int) (8.5 * encoderTicksPerInches);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
