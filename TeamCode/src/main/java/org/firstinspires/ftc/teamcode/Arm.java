@@ -304,7 +304,7 @@ public class Arm {
         return new Action() {
             private boolean initialized = false;
             //five degrees allows for collection of the specimen from the ground
-            private int target = (int) (5.5 * encoderTicksPerDegrees);
+            private int target = (int) (5.2 * encoderTicksPerDegrees);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
