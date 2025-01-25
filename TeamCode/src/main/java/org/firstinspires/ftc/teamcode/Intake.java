@@ -24,7 +24,7 @@ public class Intake {
 
     //define preset degrees for the opening and closing of the claw
     public static final double open = 0.0;
-    public static final double close = 0.28;
+    public static final double close = 0.32;
 
     //define the two wrist positions position.
     final double wristHorizontalPos = 0.0;

@@ -311,8 +311,8 @@ public class Arm {
                     armRotationLeft.setTargetPosition(target);
                     armRotationRight.setTargetPosition(target);
 
-                    armRotationLeft.setPower(0.9);
-                    armRotationRight.setPower(0.9);
+                    armRotationLeft.setPower(0.5);
+                    armRotationRight.setPower(0.5);
 
                     armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);

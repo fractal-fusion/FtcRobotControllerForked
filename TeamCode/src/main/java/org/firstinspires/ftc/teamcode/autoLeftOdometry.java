@@ -70,13 +70,13 @@ public class autoLeftOdometry extends LinearOpMode {
                 //move to rightmost sample
                 .turnTo(Math.toRadians(90))
 //                .waitSeconds(0.3)
-                .afterTime(0.3, arm.moveArmToCollectSampleDegrees())
-                .strafeTo(new Vector2d(-51.2, -43.5))
+                .afterTime(0.6, arm.moveArmToCollectSampleDegrees())
+                .strafeTo(new Vector2d(-50.2, -45.5))
+                .waitSeconds(0.95)
 //                .waitSeconds(0.25)
                 //rotate arm and close claw
                 .stopAndAdd(new SequentialAction(
 //                        arm.moveArmToCollectSampleDegrees(),
-                        new SleepAction(0.7),
                         intake.closeClaw(),
                         new SleepAction(0.28),
                         arm.moveArmToScoreDegrees()
@@ -114,12 +114,12 @@ public class autoLeftOdometry extends LinearOpMode {
                 //move to middle sample
                 .turnTo(Math.toRadians(90))
                 .afterTime(0.6, arm.moveArmToCollectSampleDegrees())
-                .strafeTo(new Vector2d(-61.8, -44))
+                .strafeTo(new Vector2d(-61.8, -44.5))
 //                .waitSeconds(0.25)
                 //rotate arm and close claw
                 .stopAndAdd(new SequentialAction(
 //                        arm.moveArmToCollectSampleDegrees(),
-                        new SleepAction(0.5),
+                        new SleepAction(0.65),
                         intake.closeClaw(),
                         new SleepAction(0.28),
                         arm.moveArmToScoreDegrees()
