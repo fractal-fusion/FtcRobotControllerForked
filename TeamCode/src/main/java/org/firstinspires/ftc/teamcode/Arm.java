@@ -304,15 +304,15 @@ public class Arm {
         return new Action() {
             private boolean initialized = false;
             //five degrees allows for collection of the specimen from the ground
-            private int target = (int) (6.2 * encoderTicksPerDegrees);
+            private int target = (int) (5.5 * encoderTicksPerDegrees);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
                     armRotationLeft.setTargetPosition(target);
                     armRotationRight.setTargetPosition(target);
 
-                    armRotationLeft.setPower(0.5);
-                    armRotationRight.setPower(0.5);
+                    armRotationLeft.setPower(0.3);
+                    armRotationRight.setPower(0.3);
 
                     armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);

@@ -118,7 +118,7 @@ public class autoRightOdometry extends LinearOpMode {
                 ))
 
                 //score third specimen
-                .strafeToLinearHeading(new Vector2d(-5 ,scorespecimeny + 1.4), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(-5 ,scorespecimeny + 1.6), Math.toRadians(90))
                 .stopAndAdd(new SequentialAction(
                         arm.scoreSpecimenViperslides(),
                         new SleepAction(0.38),
