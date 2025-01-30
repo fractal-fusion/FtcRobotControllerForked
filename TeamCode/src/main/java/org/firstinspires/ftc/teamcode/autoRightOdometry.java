@@ -82,7 +82,7 @@ public class autoRightOdometry extends LinearOpMode {
                 .waitSeconds(0.3)
 
                 //go for second specimen
-                .strafeTo(new Vector2d(collectspecimenx, collectspecimeny - 0.5))
+                .strafeTo(new Vector2d(collectspecimenx, collectspecimeny - 1.5))
                 //intake second specimen
                 .stopAndAdd(new SequentialAction(
                         arm.moveArmToPrimeCollectionDegrees(),
@@ -106,7 +106,7 @@ public class autoRightOdometry extends LinearOpMode {
                 ))
 
                 //go for third specimen
-                .strafeToLinearHeading(new Vector2d(collectspecimenx + 4, collectspecimeny - 2), Math.toRadians(0))
+                .strafeToLinearHeading(new Vector2d(collectspecimenx + 4, collectspecimeny - 3.5), Math.toRadians(0))
                 //intake third specimen
                 .stopAndAdd(new SequentialAction(
                         arm.slowPrimeScoreSpecimenViperslides(),

@@ -49,7 +49,7 @@ public class autoLeftOdometry extends LinearOpMode {
                 ))
 
                 //strafe so claw is above the bucket
-                .strafeTo(new Vector2d(-51.5,-52))
+                .strafeTo(new Vector2d(-51.5,-53.2))
 
                 //rotate arm extend viperslides and drop sample into bucket, then deextend viperslides to 15 inches
                 .stopAndAdd(new SequentialAction(
@@ -93,7 +93,7 @@ public class autoLeftOdometry extends LinearOpMode {
                 ))
 
                 //strafe so claw is above the bucket
-                .strafeTo(new Vector2d(-50.5,-52))
+                .strafeTo(new Vector2d(-50.5,-53.2))
 
                 //extend viperslides and drop sample in bucket
                 //dextend viperslides to 15 inches
@@ -136,7 +136,7 @@ public class autoLeftOdometry extends LinearOpMode {
                 ))
 
                 //strafe so claw is above the bucket
-                .strafeTo(new Vector2d(-50.5,-52))
+                .strafeTo(new Vector2d(-50.5,-53.2))
 
                 //rotate arm extend viperslides and drop sample into bucket
                 //deextend viperslides to 15 inches
