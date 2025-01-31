@@ -27,7 +27,7 @@ public class Arm {
 
     //encoder resolution used to calculate conversion factors
     private final double extensionEncoderPulsesPerRevolution = 537.7;
-    private final double rotationEncoderPulsesPerRevolution = 	1993.6;
+    private final double rotationEncoderPulsesPerRevolution = 	751.8;
 
     //gear ratios used to calculate conversion factors
     private final double rotationGearReduction = 5.0;
