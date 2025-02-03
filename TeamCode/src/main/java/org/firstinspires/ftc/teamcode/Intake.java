@@ -38,8 +38,13 @@ public class Intake {
 
     //pivot control
     double pivotPosition = 0.0;
-    double pivotPositionMax = 0.6;
-    double pivotIncrement = 0.2;
+    double pivotPositionMax = 1.0;
+    double pivotPositionOffset = 0.0;
+    double pivotIncrement = 0.25;
+
+    public static double pivotDownPos = 0.0;
+    public static double pivotStraightPos = 0.5;
+    public static double pivotUprightPos = 0.9;
 
     private OpMode opMode;
 
@@ -101,16 +106,16 @@ public class Intake {
         wrist.setPosition(servoTarget);
     }
 
-//    public void controlPivot(Gamepad gamepad) {
-//        if (currentGamepad.x && !previousGamepad.x) {
-//            pivotPosition += pivotIncrement;
-//        }
-//        else if (currentGamepad.b && !previousGamepad.b) {
-//            pivotPosition -= pivotIncrement;
-//        }
-//        pivotPosition = clampDouble(pivotPosition, 0, pivotPositionMax);
-//        pivot.setPosition(pivotPosition);
-//    }
+    public void controlPivot(double pos, Gamepad gamepad) {
+        if (currentGamepad.x && !previousGamepad.x) {
+            pivotPositionOffset += pivotIncrement;
+        }
+        else if (currentGamepad.b && !previousGamepad.b) {
+            pivotPositionOffset -= pivotIncrement;
+        }
+        pivotPosition = clampDouble(pos + pivotPositionOffset, 0, pivotPositionMax);
+        pivot.setPosition(pivotPosition);
+    }
 
     //returns the wrist to resting position
     public void setHorizontalPos() {

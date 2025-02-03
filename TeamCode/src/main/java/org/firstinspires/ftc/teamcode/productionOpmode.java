@@ -22,6 +22,8 @@ public class productionOpmode extends LinearOpMode {
 
         //degree variable for arm
         double degrees = 0;
+        //pivot position variable for intake
+        double pivotpos = 0;
 
         waitForStart();
 
@@ -35,28 +37,31 @@ public class productionOpmode extends LinearOpMode {
 
             //gamepad 2 arm
             //arm.controlArm(gamepad2);
+            arm.moveArm(degrees, gamepad2);
             arm.controlViperslides(gamepad2);
-            intake.updateGamepad(gamepad2);
-            intake.controlWrist(gamepad2);
-//            intake.controlPivot(gamepad2);
 
             //gamepad 2 intake control
+            intake.updateGamepad(gamepad2);
             intake.toggleClaw(gamepad2);
-
-            arm.moveArm(degrees, gamepad2);
+            intake.controlWrist(gamepad2);
+            intake.controlPivot(pivotpos, gamepad2);
 
             //preset positions for gamepad2
             if (gamepad2.dpad_down) {
                 degrees = Arm.collectionDegrees;
+                pivotpos = Intake.pivotDownPos;
             }
             else if (gamepad2.left_bumper) {
                 degrees = Arm.clearBarrierDegrees;
+                pivotpos = Intake.pivotStraightPos;
             }
             else if (gamepad2.y) {
                 degrees = Arm.scoreDegrees;
+                pivotpos = Intake.pivotStraightPos;
             }
             else if (gamepad2.dpad_left) {
                 degrees = Arm.hangExtendedDegrees;
+                pivotpos = Intake.pivotUprightPos;
             }
             else if (gamepad2.dpad_right) {
                 degrees = Arm.hangClimbDegrees;
