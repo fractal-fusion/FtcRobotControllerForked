@@ -65,7 +65,7 @@ public class Arm {
     public final static double scoreDegrees = 72.0;
     public final static double hangExtendedDegrees = 100.0;
     public final static double hangClimbDegrees = 6.0;
-    public final static double collectionDegrees = 3.0;
+    public final static double collectionDegrees = 2.0;
 //    public final static double restingDegrees = 10.0;
 
     private OpMode opMode;
@@ -183,8 +183,8 @@ public class Arm {
             armRotationRight.setPower(0.5);
         }
         else {
-            armRotationLeft.setPower(0.9);
-            armRotationRight.setPower(0.9);
+            armRotationLeft.setPower(0.7);
+            armRotationRight.setPower(0.7);
         }
 
         armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
