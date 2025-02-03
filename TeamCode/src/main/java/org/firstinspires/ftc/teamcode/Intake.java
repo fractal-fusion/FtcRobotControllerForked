@@ -15,6 +15,8 @@ public class Intake {
     public Servo claw;
     public Servo wrist;
 
+    public Servo pivot;
+
     //gamepads for rising edge detection to add debounce
     private Gamepad currentGamepad = new Gamepad();
     private Gamepad previousGamepad = new Gamepad();
@@ -34,6 +36,10 @@ public class Intake {
     double wristIncrementTotal = 0.0;
     double wristIncrement = 0.05;
 
+    //pivot control
+    double pivotPosition = 0.0;
+    double pivotIncrement = 0.333;
+
     private OpMode opMode;
 
     //utility function
@@ -46,6 +52,7 @@ public class Intake {
         this.opMode = linearopmode;
         claw = opMode.hardwareMap.get(Servo.class, "claw");
         wrist = opMode.hardwareMap.get(Servo.class, "wrist");
+        pivot = opMode.hardwareMap.get(Servo.class, "pivot");
     }
 
     //sets the open or close mode of the claw
@@ -56,13 +63,16 @@ public class Intake {
     public void telemetry() {
         opMode.telemetry.addData("claw position:", claw.getPosition());
         opMode.telemetry.addData("wrist position:", wrist.getPosition());
+        opMode.telemetry.addData("pivot position:", pivot.getPosition());
     }
 
-    public void toggleClaw(Gamepad gamepad) {
+    public void updateGamepad(Gamepad gamepad) {
         //copy the correct previous and current gamepad values in order for the debounce to work
         previousGamepad.copy(currentGamepad);
         currentGamepad.copy(gamepad);
+    }
 
+    public void toggleClaw(Gamepad gamepad) {
         //toggle the clawisopen boolean
         if (currentGamepad.a && !previousGamepad.a) {
             clawIsOpen = !clawIsOpen;
@@ -105,6 +115,17 @@ public class Intake {
                 return false;
             }
         };
+    }
+
+    public void controlPivot(Gamepad gamepad) {
+        if (currentGamepad.x && !previousGamepad.x) {
+            pivotPosition += pivotIncrement;
+        }
+        else if (currentGamepad.b && !previousGamepad.b) {
+            pivotPosition -= pivotIncrement;
+        }
+        pivotPosition = clampDouble(pivotPosition, 0, 1);
+        pivot.setPosition(pivotPosition);
     }
 
     public Action openClaw() {

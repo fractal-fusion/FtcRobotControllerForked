@@ -178,14 +178,15 @@ public class Arm {
         armRotationLeft.setTargetPosition(target);
         armRotationRight.setTargetPosition(target);
 
-        if (rotationAngle < 5){
-            armRotationLeft.setPower(0.5);
-            armRotationRight.setPower(0.5);
-        }
-        else {
+        //redundant slowdown
+//        if (rotationAngle < 5){
+//            armRotationLeft.setPower(0.5);
+//            armRotationRight.setPower(0.5);
+//        }
+//        else {
             armRotationLeft.setPower(0.7);
             armRotationRight.setPower(0.7);
-        }
+//        }
 
         armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
