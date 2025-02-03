@@ -38,7 +38,7 @@ public class productionOpmode extends LinearOpMode {
             arm.controlViperslides(gamepad2);
             intake.updateGamepad(gamepad2);
             intake.controlWrist(gamepad2);
-            intake.controlPivot(gamepad2);
+//            intake.controlPivot(gamepad2);
 
             //gamepad 2 intake control
             intake.toggleClaw(gamepad2);

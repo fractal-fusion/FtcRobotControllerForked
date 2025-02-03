@@ -25,8 +25,8 @@ public class Intake {
     private boolean clawIsOpen = true;
 
     //define preset degrees for the opening and closing of the claw
-    public static final double open = 0.0;
-    public static final double close = 0.32;
+    public static double open = 0.0;
+    public static double close = 0.32;
 
     //define the two wrist positions position.
     final double wristHorizontalPos = 0.0;
@@ -38,7 +38,8 @@ public class Intake {
 
     //pivot control
     double pivotPosition = 0.0;
-    double pivotIncrement = 0.333;
+    double pivotPositionMax = 0.6;
+    double pivotIncrement = 0.2;
 
     private OpMode opMode;
 
@@ -100,6 +101,17 @@ public class Intake {
         wrist.setPosition(servoTarget);
     }
 
+//    public void controlPivot(Gamepad gamepad) {
+//        if (currentGamepad.x && !previousGamepad.x) {
+//            pivotPosition += pivotIncrement;
+//        }
+//        else if (currentGamepad.b && !previousGamepad.b) {
+//            pivotPosition -= pivotIncrement;
+//        }
+//        pivotPosition = clampDouble(pivotPosition, 0, pivotPositionMax);
+//        pivot.setPosition(pivotPosition);
+//    }
+
     //returns the wrist to resting position
     public void setHorizontalPos() {
         wrist.setPosition(wristHorizontalPos);
@@ -117,16 +129,7 @@ public class Intake {
         };
     }
 
-    public void controlPivot(Gamepad gamepad) {
-        if (currentGamepad.x && !previousGamepad.x) {
-            pivotPosition += pivotIncrement;
-        }
-        else if (currentGamepad.b && !previousGamepad.b) {
-            pivotPosition -= pivotIncrement;
-        }
-        pivotPosition = clampDouble(pivotPosition, 0, 1);
-        pivot.setPosition(pivotPosition);
-    }
+
 
     public Action openClaw() {
         return new Action() {
