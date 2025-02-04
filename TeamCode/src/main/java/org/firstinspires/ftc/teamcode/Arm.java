@@ -56,7 +56,7 @@ public class    Arm {
 
     //arm rotation feedforward
     private double armPower;
-    private double armMaxPower = 0.7;
+    private double armMaxPower = 0.35;
 
     //calculate conversion factors
     private final double encoderTicksPerDegrees = (rotationEncoderPulsesPerRevolution * rotationGearReduction)
@@ -108,11 +108,12 @@ public class    Arm {
 
         //restrict the horizontal extension
         if (rotationAngle < Arm.scoreDegrees) {
+            //-4.5 inches for the pivot if its a problem at inspection
             viperslideMaxInches = 15.0;
         }
-        else if (rotationAngle > 95) {
-            viperslideMaxInches = 15;
-        }
+//        else if (rotationAngle > 95) {
+//            viperslideMaxInches = 15;
+//        }
         else {
             viperslideMaxInches = 35.5;
         }
@@ -178,7 +179,7 @@ public class    Arm {
     public void moveArm(double degrees, Gamepad gamepad) {
         rotationAngle = degrees + (armOffsetMaxDegrees * (gamepad.left_trigger + -gamepad.right_trigger));
 
-        armPower = Math.cos(Math.toRadians(armRotationLeft.getCurrentPosition() * encoderTicksPerDegrees)) * (armMaxPower/(viperslideIncrementTotalInches/6.666));
+        armPower = Math.cos(Math.toRadians(armRotationLeft.getCurrentPosition() * encoderTicksPerDegrees)) * (armMaxPower - (viperslideMaxInches/10));
 
         int target = (int) (rotationAngle * encoderTicksPerDegrees);
         armRotationLeft.setTargetPosition(target);

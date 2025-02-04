@@ -38,12 +38,12 @@ public class Intake {
 
     //pivot control
     double pivotPosition = 0.0;
-    double pivotPositionMax = 1.0;
+    double pivotPositionMax = 0.6;
     double pivotPositionOffset = 0.0;
-    double pivotIncrement = 0.25;
+    double pivotIncrement = 0.3;
 
     public static double pivotDownPos = 0.0;
-    public static double pivotStraightPos = 0.5;
+    public static double pivotStraightPos = 0.3;
     public static double pivotUprightPos = 0.9;
 
     private OpMode opMode;
@@ -109,11 +109,17 @@ public class Intake {
     public void controlPivot(double pos, Gamepad gamepad) {
         if (currentGamepad.x && !previousGamepad.x) {
             pivotPositionOffset += pivotIncrement;
+            pivotPositionOffset = clampDouble(pivotPositionOffset, -pos, pivotPositionMax - pos);
         }
         else if (currentGamepad.b && !previousGamepad.b) {
             pivotPositionOffset -= pivotIncrement;
+            pivotPositionOffset = clampDouble(pivotPositionOffset, -pos, pivotPositionMax - pos);
         }
         pivotPosition = clampDouble(pos + pivotPositionOffset, 0, pivotPositionMax);
+//        opMode.telemetry.addData("pivot target position", pivotPosition);
+//        opMode.telemetry.addData("pivot offset", pivotPositionOffset);
+//        opMode.telemetry.addData("pivot actual position,", pivot.getPosition());
+
         pivot.setPosition(pivotPosition);
     }
 
