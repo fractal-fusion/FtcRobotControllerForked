@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-public class Arm {
+public class    Arm {
     //utility function
     private double clampDouble(double value, double min, double max) {
         return Math.max(min, Math.min(max, value));
@@ -53,6 +53,10 @@ public class Arm {
 
     //arm offset
     private double armOffsetMaxDegrees = 5;
+
+    //arm rotation feedforward
+    private double armPower;
+    private double armMaxPower = 0.7;
 
     //calculate conversion factors
     private final double encoderTicksPerDegrees = (rotationEncoderPulsesPerRevolution * rotationGearReduction)
@@ -174,6 +178,8 @@ public class Arm {
     public void moveArm(double degrees, Gamepad gamepad) {
         rotationAngle = degrees + (armOffsetMaxDegrees * (gamepad.left_trigger + -gamepad.right_trigger));
 
+        armPower = Math.cos(Math.toRadians(armRotationLeft.getCurrentPosition() * encoderTicksPerDegrees)) * (armMaxPower/(viperslideIncrementTotalInches/6.666));
+
         int target = (int) (rotationAngle * encoderTicksPerDegrees);
         armRotationLeft.setTargetPosition(target);
         armRotationRight.setTargetPosition(target);
@@ -184,8 +190,8 @@ public class Arm {
 //            armRotationRight.setPower(0.5);
 //        }
 //        else {
-            armRotationLeft.setPower(0.7);
-            armRotationRight.setPower(0.7);
+            armRotationLeft.setPower(armPower);
+            armRotationRight.setPower(armPower);
 //        }
 
         armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
