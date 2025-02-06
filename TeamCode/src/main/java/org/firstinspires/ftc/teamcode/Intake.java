@@ -8,6 +8,7 @@ import com.acmerobotics.roadrunner.Action;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
 public class Intake {
@@ -46,6 +47,7 @@ public class Intake {
     public static double pivotStraightPos = 0.3;
     public static double pivotUprightPos = 0.9;
 
+    //opmode variable
     private OpMode opMode;
 
     //utility function
@@ -109,12 +111,11 @@ public class Intake {
     public void controlPivot(double pos, Gamepad gamepad) {
         if (currentGamepad.x && !previousGamepad.x) {
             pivotPositionOffset += pivotIncrement;
-            pivotPositionOffset = clampDouble(pivotPositionOffset, -pos, pivotPositionMax - pos);
         }
         else if (currentGamepad.b && !previousGamepad.b) {
             pivotPositionOffset -= pivotIncrement;
-            pivotPositionOffset = clampDouble(pivotPositionOffset, -pos, pivotPositionMax - pos);
         }
+        pivotPositionOffset = clampDouble(pivotPositionOffset, -pos, pivotPositionMax - pos);
         pivotPosition = clampDouble(pos + pivotPositionOffset, 0, pivotPositionMax);
 //        opMode.telemetry.addData("pivot target position", pivotPosition);
 //        opMode.telemetry.addData("pivot offset", pivotPositionOffset);
