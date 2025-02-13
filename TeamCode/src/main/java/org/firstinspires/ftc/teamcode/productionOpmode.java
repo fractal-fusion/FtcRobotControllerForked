@@ -56,7 +56,7 @@ public class productionOpmode extends LinearOpMode {
             }
             else if (gamepad2.y) {
                 degrees = Arm.scoreDegrees;
-                pivotpos = Intake.pivotStraightPos;
+               // pivotpos = Intake.pivotStraightPos;
             }
             else if (gamepad2.dpad_left) {
                 degrees = Arm.hangExtendedDegrees;

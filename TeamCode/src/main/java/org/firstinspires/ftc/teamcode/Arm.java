@@ -2,6 +2,9 @@ package org.firstinspires.ftc.teamcode;
 
 import androidx.annotation.NonNull;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.config.Config;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -9,7 +12,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
+@Config
 public class    Arm {
     //utility function
     private double clampDouble(double value, double min, double max) {
@@ -54,9 +59,15 @@ public class    Arm {
     //arm offset
     private double armOffsetMaxDegrees = 5;
 
-    //arm rotation feedforward
-    private double armPower;
-    private double armMaxPower = 0.35;
+    //arm PIDF variables
+    public static double kP = 0.003;
+    public static double kI = 0.0006;
+    public static double kD = 0;
+    public static double kCos = 0;
+    public static double kPMaxReduction = kP/1.2;
+    double integralSum = 0;
+    double lastError = 0;
+    ElapsedTime timer = new ElapsedTime();
 
     //calculate conversion factors
     private final double encoderTicksPerDegrees = (rotationEncoderPulsesPerRevolution * rotationGearReduction)
@@ -85,6 +96,13 @@ public class    Arm {
         armRotationLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armRotationRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        //for pid
+//        armRotationLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+//        armRotationRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        armRotationLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        armRotationRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         viperslideLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         viperslideRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
@@ -95,6 +113,33 @@ public class    Arm {
         viperslideRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
     }
+
+//    public double armPIDFControl(double target, double currentPos) {
+//
+//        //calculate proportional term
+//        double error = target - currentPos;
+//
+//        //calculate integral term, preinitialized because it can't be reset to zero on loop
+//        integralSum += error * timer.seconds();
+//
+//        //calculate derivative term
+//        double derivative = (error - lastError) / timer.seconds();
+//
+//        lastError = error;
+//        timer.reset();
+//
+//        //add together all gains and return the output
+//        // normalize the viperslide extension to a 0-1 range, and multiply that by a reduction
+//        // variable which represents how much kP should be reduced by at max viperslide extension
+//        double output = (error * (kP - (kPMaxReduction * viperslideIncrementTotalInches/viperslideMaxInches))) + (derivative * kD) + (integralSum * kI) + (Math.cos(Math.toRadians(armRotationLeft.getCurrentPosition()/encoderTicksPerDegrees)) * kCos);
+//
+//        opMode.telemetry = new MultipleTelemetry(opMode.telemetry, FtcDashboard.getInstance().getTelemetry());
+//        opMode.telemetry.addData("target", target);
+//        opMode.telemetry.addData("currentpos", currentPos);
+//        opMode.telemetry.update();
+//
+//        return output;
+//    }
 
     //main function which controls extension of the viperslides.
     public void controlViperslides(Gamepad gamepad) {
@@ -179,24 +224,28 @@ public class    Arm {
     public void moveArm(double degrees, Gamepad gamepad) {
         rotationAngle = degrees + (armOffsetMaxDegrees * (gamepad.left_trigger + -gamepad.right_trigger));
 
-        armPower = Math.cos(Math.toRadians(armRotationLeft.getCurrentPosition() * encoderTicksPerDegrees)) * (armMaxPower - (viperslideMaxInches/10));
-
         int target = (int) (rotationAngle * encoderTicksPerDegrees);
+
+//        double armPowerLeft = armPIDFControl(target, armRotationLeft.getCurrentPosition());
+//        double armPowerRight = armPIDFControl(target, armRotationRight.getCurrentPosition());
+
+//        armRotationLeft.setPower(armPowerLeft);
+//        armRotationRight.setPower(armPowerRight);
+
         armRotationLeft.setTargetPosition(target);
         armRotationRight.setTargetPosition(target);
 
-        //redundant slowdown
-//        if (rotationAngle < 5){
-//            armRotationLeft.setPower(0.5);
-//            armRotationRight.setPower(0.5);
-//        }
-//        else {
-            armRotationLeft.setPower(armPower);
-            armRotationRight.setPower(armPower);
-//        }
-
         armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        if (rotationAngle > Arm.scoreDegrees) {
+            armRotationLeft.setPower(0.4);
+            armRotationRight.setPower(0.4);
+        }
+        else {
+            armRotationLeft.setPower(0.9);
+            armRotationRight.setPower(0.9);
+        }
     }
 
     //manual arm controls
