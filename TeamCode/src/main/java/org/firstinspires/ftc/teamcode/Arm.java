@@ -287,8 +287,7 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (armRotationLeft.getCurrentPosition() < target) {
-                    packet.put("armposition", armRotationLeft.getCurrentPosition());
+                if (armRotationLeft.isBusy() || armRotationRight.isBusy()) {
                     return true;
                 }
                 else {
@@ -316,8 +315,7 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (armRotationLeft.getCurrentPosition() < target) {
-                    packet.put("armposition", armRotationLeft.getCurrentPosition());
+                if (armRotationLeft.isBusy() || armRotationRight.isBusy()) {
                     return true;
                 }
                 else {
@@ -345,8 +343,7 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (armRotationLeft.getCurrentPosition() < target) {
-                    packet.put("armposition", armRotationLeft.getCurrentPosition());
+                if (armRotationLeft.isBusy() || armRotationRight.isBusy()) {
                     return true;
                 }
                 else {
@@ -376,8 +373,7 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (armRotationLeft.getCurrentPosition() < target) {
-                    packet.put("armposition", armRotationLeft.getCurrentPosition());
+                if (armRotationLeft.isBusy() || armRotationRight.isBusy()) {
                     return true;
                 }
                 else {
@@ -405,7 +401,12 @@ public class    Arm {
 
                     initialized = true;
                 }
-                return false;
+                if (armRotationLeft.isBusy() || armRotationRight.isBusy()) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
             }
         };
     }
@@ -428,8 +429,7 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (viperslideLeft.getCurrentPosition() < target) {
-                    packet.put("viperslidepos", viperslideLeft.getCurrentPosition());
+                if (viperslideLeft.isBusy() || viperslideRight.isBusy()) {
                     return true;
                 }
                 else {
@@ -457,10 +457,12 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (viperslideLeft.getCurrentPosition() > target) {
+                if (viperslideLeft.isBusy() || viperslideRight.isBusy()) {
                     return true;
                 }
-                return false;
+                else {
+                    return false;
+                }
             }
         };
     }
@@ -484,8 +486,7 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (viperslideLeft.getCurrentPosition() < target) {
-                    packet.put("viperslidepos", viperslideLeft.getCurrentPosition());
+                if (viperslideLeft.isBusy() || viperslideRight.isBusy()) {
                     return true;
                 }
                 else {
@@ -514,8 +515,7 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (viperslideLeft.getCurrentPosition() < target) {
-                    packet.put("viperslidepos", viperslideLeft.getCurrentPosition());
+                if (viperslideLeft.isBusy() || viperslideRight.isBusy()) {
                     return true;
                 }
                 else {
@@ -544,8 +544,7 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (viperslideLeft.getCurrentPosition() < target) {
-                    packet.put("viperslidepos", viperslideLeft.getCurrentPosition());
+                if (viperslideLeft.isBusy() || viperslideRight.isBusy()) {
                     return true;
                 }
                 else {
@@ -574,8 +573,7 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (viperslideLeft.getCurrentPosition() < target) {
-                    packet.put("viperslidepos", viperslideLeft.getCurrentPosition());
+                if (viperslideLeft.isBusy() || viperslideRight.isBusy()) {
                     return true;
                 }
                 else {
