@@ -2,9 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import androidx.annotation.NonNull;
 
-import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
-import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -265,6 +263,9 @@ public class    Arm {
         opMode.telemetry.addData("arm degrees: ", rotationAngle);
         opMode.telemetry.addData("arm target: ", target);
         opMode.telemetry.update();
+    }
+    public void motorTest() {
+        armRotationLeft.setPower(0.2);
     }
 
     // -----------------------------ROADRUNNER ACTIONS ------------------------------------

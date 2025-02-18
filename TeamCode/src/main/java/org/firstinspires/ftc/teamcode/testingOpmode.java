@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @Config
 public class testingOpmode extends LinearOpMode {
     //initialize objects
-    Intake intake = new Intake(this);
-    public static double pivotpos = 0.0;
+    Arm arm = new Arm(this);
+
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -22,9 +22,9 @@ public class testingOpmode extends LinearOpMode {
 
         while (opModeIsActive())
         {
-            intake.pivot.setPosition(pivotpos);
-            telemetry.addData("pivot pos:", intake.pivot.getPosition());
-            telemetry.update();
+            if (gamepad1.x) {
+                arm.motorTest();
+            }
         }
     }
 }
