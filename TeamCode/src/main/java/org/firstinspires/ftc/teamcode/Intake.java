@@ -39,13 +39,13 @@ public class Intake {
 
     //pivot control
     double pivotPosition = 0.0;
-    double pivotPositionMax = 0.6;
+    public static double pivotPositionMax = 0.6;
     double pivotPositionOffset = 0.0;
-    double pivotIncrement = 0.3;
+    public static double pivotIncrement = 0.3;
 
     public static double pivotDownPos = 0.0;
     public static double pivotStraightPos = 0.3;
-    public static double pivotUprightPos = 0.9;
+    public static double pivotUprightPos = pivotPositionMax;
 
     //opmode variable
     private OpMode opMode;

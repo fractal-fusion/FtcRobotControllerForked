@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
+import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -27,7 +28,13 @@ public class autoTest extends LinearOpMode {
                         arm.moveArmToScoreDegrees(),
                         arm.extendViperslides(),
                         arm.retractViperslides(),
-                        arm.moveArmToCollectSampleDegrees()
+                        intake.openClaw(),
+                        new SleepAction(0.3),
+                        arm.moveArmToPrimeCollectionDegrees(),
+                        intake.closeClaw(),
+                        new SleepAction(0.3),
+                        arm.moveArmToObtuseDegrees(),
+                        new SleepAction(0.3)
                 ))
                 .build();
 

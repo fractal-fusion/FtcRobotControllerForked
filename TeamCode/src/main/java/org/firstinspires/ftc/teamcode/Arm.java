@@ -67,6 +67,9 @@ public class    Arm {
     double lastError = 0;
     ElapsedTime timer = new ElapsedTime();
 
+    //deadband for actions
+    double deadband = 40.0;
+
     //calculate conversion factors
     private final double encoderTicksPerDegrees = (rotationEncoderPulsesPerRevolution * rotationGearReduction)
                                                 / (360);
@@ -280,15 +283,46 @@ public class    Arm {
                     armRotationLeft.setTargetPosition(target);
                     armRotationRight.setTargetPosition(target);
 
-                    armRotationLeft.setPower(0.9);
-                    armRotationRight.setPower(0.9);
+                    armRotationLeft.setPower(0.7);
+                    armRotationRight.setPower(0.7);
 
                     armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
                     initialized = true;
                 }
-                if (armRotationLeft.isBusy() || armRotationRight.isBusy()) {
+                double deadband = 10.0;
+                if (armRotationLeft.getCurrentPosition() > target + deadband || armRotationLeft.getCurrentPosition() < target - deadband) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        };
+    }
+
+    public Action moveArmToObtuseDegrees() {
+        return new Action() {
+            private boolean initialized = false;
+            private int target = (int) (Arm.hangExtendedDegrees * encoderTicksPerDegrees);
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                if (!initialized) {
+                    armRotationLeft.setTargetPosition(target);
+                    armRotationRight.setTargetPosition(target);
+
+                    armRotationLeft.setPower(0.4);
+                    armRotationRight.setPower(0.4);
+
+                    armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                    initialized = true;
+                }
+
+                double deadband = 10.0;
+                if (armRotationLeft.getCurrentPosition() > target + deadband || armRotationLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
                 else {
@@ -308,15 +342,15 @@ public class    Arm {
                     armRotationLeft.setTargetPosition(target);
                     armRotationRight.setTargetPosition(target);
 
-                    armRotationLeft.setPower(0.9);
-                    armRotationRight.setPower(0.9);
+                    armRotationLeft.setPower(0.7);
+                    armRotationRight.setPower(0.7);
 
                     armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
                     initialized = true;
                 }
-                if (armRotationLeft.isBusy() || armRotationRight.isBusy()) {
+                if (armRotationLeft.getCurrentPosition() > target + deadband || armRotationLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
                 else {
@@ -336,15 +370,15 @@ public class    Arm {
                     armRotationLeft.setTargetPosition(target);
                     armRotationRight.setTargetPosition(target);
 
-                    armRotationLeft.setPower(0.9);
-                    armRotationRight.setPower(0.9);
+                    armRotationLeft.setPower(0.7);
+                    armRotationRight.setPower(0.7);
 
                     armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
                     initialized = true;
                 }
-                if (armRotationLeft.isBusy() || armRotationRight.isBusy()) {
+                if (armRotationLeft.getCurrentPosition() > target + deadband || armRotationLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
                 else {
@@ -374,7 +408,7 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (armRotationLeft.isBusy() || armRotationRight.isBusy()) {
+                if (armRotationLeft.getCurrentPosition() > target + deadband || armRotationLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
                 else {
@@ -394,15 +428,15 @@ public class    Arm {
                     armRotationLeft.setTargetPosition(target);
                     armRotationRight.setTargetPosition(target);
 
-                    armRotationLeft.setPower(0.9);
-                    armRotationRight.setPower(0.9);
+                    armRotationLeft.setPower(0.7);
+                    armRotationRight.setPower(0.7);
 
                     armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
                     initialized = true;
                 }
-                if (armRotationLeft.isBusy() || armRotationRight.isBusy()) {
+                if (armRotationLeft.getCurrentPosition() > target + deadband || armRotationLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
                 else {
@@ -430,7 +464,7 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (viperslideLeft.isBusy() || viperslideRight.isBusy()) {
+                if (viperslideLeft.getCurrentPosition() > target + deadband || viperslideLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
                 else {
@@ -443,7 +477,7 @@ public class    Arm {
     public Action retractViperslides() {
         return new Action() {
             private boolean initialized = false;
-            private int target = 40;
+            private int target = 20;
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
@@ -458,7 +492,8 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (viperslideLeft.isBusy() || viperslideRight.isBusy()) {
+                double deadband = 40;
+                if (viperslideLeft.getCurrentPosition() > target + deadband || viperslideLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
                 else {
@@ -487,7 +522,7 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (viperslideLeft.isBusy() || viperslideRight.isBusy()) {
+                if (viperslideLeft.getCurrentPosition() > target + deadband || viperslideLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
                 else {
@@ -516,7 +551,7 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (viperslideLeft.isBusy() || viperslideRight.isBusy()) {
+                if (viperslideLeft.getCurrentPosition() > target + deadband || viperslideLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
                 else {
@@ -545,7 +580,7 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (viperslideLeft.isBusy() || viperslideRight.isBusy()) {
+                if (viperslideLeft.getCurrentPosition() > target + deadband || viperslideLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
                 else {
@@ -574,7 +609,7 @@ public class    Arm {
 
                     initialized = true;
                 }
-                if (viperslideLeft.isBusy() || viperslideRight.isBusy()) {
+                if (viperslideLeft.getCurrentPosition() > target + deadband || viperslideLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
                 else {
