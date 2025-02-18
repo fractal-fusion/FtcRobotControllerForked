@@ -173,4 +173,32 @@ public class Intake {
         };
     }
 
+    public Action rotatePivotDown() {
+        return new Action() {
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                pivot.setPosition(pivotDownPos);
+                return false;
+            }
+        };
+    }
+
+    public Action rotatePivotStraight() {
+        return new Action() {
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                pivot.setPosition(pivotStraightPos);
+                return false;
+            }
+        };
+    }
+    public Action rotatePivotUpright() {
+        return new Action() {
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                pivot.setPosition(pivotUprightPos);
+                return false;
+            }
+        };
+    }
 }
