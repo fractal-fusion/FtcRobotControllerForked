@@ -532,10 +532,10 @@ public class    Arm {
         };
     }
 
-    public Action scoreSpecimenViperslides() {
+    public Action scoreSpecimenViperslidesBelowBar() {
         return new Action() {
             private boolean initialized = false;
-            //extend 15 inches to score the specimen on the high rung
+            //deextend to 4 inches to score the specimen on the high rung
             private int target = (int) (4 * encoderTicksPerInches);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
@@ -561,10 +561,70 @@ public class    Arm {
         };
     }
 
-    public Action primeScoreSpecimenViperslides() {
+    public Action scoreSpecimenViperslidesAboveBar() {
+        return new Action() {
+            private boolean initialized = false;
+            //extend 13 inches to score the specimen on the high rung
+            //TODO: tune this aswell
+            private int target = (int) (13 * encoderTicksPerInches);
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                if (!initialized) {
+                    viperslideLeft.setTargetPosition(target);
+                    viperslideRight.setTargetPosition(target);
+
+                    viperslideLeft.setPower(1);
+                    viperslideRight.setPower(1);
+
+                    viperslideLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    viperslideRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                    initialized = true;
+                }
+                if (viperslideLeft.getCurrentPosition() > target + deadband || viperslideLeft.getCurrentPosition() < target - deadband) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        };
+    }
+
+    public Action primeScoreSpecimenViperslidesAboveBar() {
         return new Action() {
             private boolean initialized = false;
             //11 inches to touch the high rung but not score the specimen
+            private int target = (int) (8.5 * encoderTicksPerInches);
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                if (!initialized) {
+                    viperslideLeft.setTargetPosition(target);
+                    viperslideRight.setTargetPosition(target);
+
+                    viperslideLeft.setPower(1);
+                    viperslideRight.setPower(1);
+
+                    viperslideLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    viperslideRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                    initialized = true;
+                }
+                if (viperslideLeft.getCurrentPosition() > target + deadband || viperslideLeft.getCurrentPosition() < target - deadband) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        };
+    }
+
+    public Action primeScoreSpecimenViperslidesBelowBar() {
+        return new Action() {
+            private boolean initialized = false;
+            //11 inches to touch the high rung but not score the specimen
+            //TODO: tune this value
             private int target = (int) (8.5 * encoderTicksPerInches);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
