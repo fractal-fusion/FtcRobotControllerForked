@@ -532,7 +532,7 @@ public class    Arm {
         };
     }
 
-    public Action scoreSpecimenViperslidesBelowBar() {
+    public Action scoreSpecimenViperslidesFromAboveBar() {
         return new Action() {
             private boolean initialized = false;
             //deextend to 4 inches to score the specimen on the high rung
@@ -561,7 +561,7 @@ public class    Arm {
         };
     }
 
-    public Action scoreSpecimenViperslidesAboveBar() {
+    public Action scoreSpecimenViperslidesFromBelowBar() {
         return new Action() {
             private boolean initialized = false;
             //extend 13 inches to score the specimen on the high rung
@@ -591,7 +591,7 @@ public class    Arm {
         };
     }
 
-    public Action primeScoreSpecimenViperslidesAboveBar() {
+    public Action primeScoreSpecimenViperslidesFromAboveBar() {
         return new Action() {
             private boolean initialized = false;
             //11 inches to touch the high rung but not score the specimen
@@ -620,7 +620,7 @@ public class    Arm {
         };
     }
 
-    public Action primeScoreSpecimenViperslidesBelowBar() {
+    public Action primeScoreSpecimenViperslidesFromBelowBar() {
         return new Action() {
             private boolean initialized = false;
             //11 inches to touch the high rung but not score the specimen
