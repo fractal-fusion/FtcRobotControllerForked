@@ -77,11 +77,11 @@ public class    Arm {
                                                 / (pulleyDiameterInches * Math.PI);
 
     //define preset positions of the arm.
-    public final static double clearBarrierDegrees = 13.0;
-    public final static double scoreDegrees = 72.0;
-    public final static double hangExtendedDegrees = 100.0;
-    public final static double hangClimbDegrees = 6.0;
-    public final static double collectionDegrees = 2.0;
+    public static double clearBarrierDegrees = 13.0;
+    public static double scoreDegrees = 72.0;
+    public static double hangExtendedDegrees = 94.0;
+    public static double hangClimbDegrees = 6.0;
+    public static double collectionDegrees = 2.0;
 //    public final static double restingDegrees = 10.0;
 
     private OpMode opMode;
@@ -240,12 +240,12 @@ public class    Arm {
         armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         if (rotationAngle > Arm.scoreDegrees) {
-            armRotationLeft.setPower(0.4);
-            armRotationRight.setPower(0.4);
+            armRotationLeft.setPower(0.3);
+            armRotationRight.setPower(0.3);
         }
         else {
-            armRotationLeft.setPower(0.9);
-            armRotationRight.setPower(0.9);
+            armRotationLeft.setPower(0.6);
+            armRotationRight.setPower(0.6);
         }
     }
 
