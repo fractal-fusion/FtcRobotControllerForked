@@ -79,7 +79,7 @@ public class    Arm {
     //define preset positions of the arm.
     public static double clearBarrierDegrees = 15.0;
     public static double scoreDegrees = 72.0;
-    public static double hangExtendedDegrees = 96.0;
+    public static double hangExtendedDegrees = 98.0;
     public static double hangClimbDegrees = 6.0;
     public static double collectionDegrees = 2.0;
 //    public final static double restingDegrees = 10.0;
@@ -536,7 +536,7 @@ public class    Arm {
         return new Action() {
             private boolean initialized = false;
             //deextend to 4 inches to score the specimen on the high rung
-            private int target = (int) (4 * encoderTicksPerInches);
+            private int target = (int) (3.5 * encoderTicksPerInches);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
