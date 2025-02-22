@@ -9,7 +9,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 public class testingOpmode extends LinearOpMode {
     //initialize objects
     Arm arm = new Arm(this);
-
+    Intake intake = new Intake(this);
+    Drivetrain drivetrain = new Drivetrain(this);
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -22,9 +23,11 @@ public class testingOpmode extends LinearOpMode {
 
         while (opModeIsActive())
         {
-            if (gamepad1.x) {
-                arm.motorTest();
-            }
+            drivetrain.drive(gamepad1);
+
+            arm.controlArm(gamepad2);
+            intake.updateGamepad(gamepad2);
+            intake.testPivot(gamepad2);
         }
     }
 }

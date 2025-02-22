@@ -116,11 +116,26 @@ public class Intake {
             pivotPositionOffset -= pivotIncrement;
         }
         pivotPositionOffset = clampDouble(pivotPositionOffset, -pos, pivotPositionMax - pos);
-        pivotPosition = clampDouble(pos + pivotPositionOffset, 0, pivotPositionMax);
+        pivotPosition = pos + pivotPositionOffset;
+        pivotPosition = clampDouble(pivotPosition, 0, pivotPositionMax);
 //        opMode.telemetry.addData("pivot target position", pivotPosition);
 //        opMode.telemetry.addData("pivot offset", pivotPositionOffset);
 //        opMode.telemetry.addData("pivot actual position,", pivot.getPosition());
+        pivot.setPosition(pivotPosition);
+    }
 
+    public void testPivot(Gamepad gamepad) {
+        if (currentGamepad.x && !previousGamepad.x) {
+            pivotPosition += 0.05;
+        }
+        else if (currentGamepad.b && !previousGamepad.b) {
+            pivotPosition -= 0.05;
+        }
+
+        opMode.telemetry.addData("pivot position,", pivot.getPosition());
+        opMode.telemetry.update();
+
+        pivotPosition = clampDouble(pivotPosition, 0, pivotPositionMax);
         pivot.setPosition(pivotPosition);
     }
 
