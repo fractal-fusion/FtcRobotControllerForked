@@ -79,7 +79,7 @@ public class    Arm {
     //define preset positions of the arm.
     public static double clearBarrierDegrees = 15.0;
     public static double scoreDegrees = 72.0;
-    public static double hangExtendedDegrees = 94.0;
+    public static double hangExtendedDegrees = 96.0;
     public static double hangClimbDegrees = 6.0;
     public static double collectionDegrees = 2.0;
 //    public final static double restingDegrees = 10.0;
@@ -239,13 +239,13 @@ public class    Arm {
         armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        if (rotationAngle > Arm.scoreDegrees) {
+        if (rotationAngle > 90) {
             armRotationLeft.setPower(0.3);
             armRotationRight.setPower(0.3);
         }
         else {
-            armRotationLeft.setPower(0.6);
-            armRotationRight.setPower(0.6);
+            armRotationLeft.setPower(0.7);
+            armRotationRight.setPower(0.7);
         }
     }
 
