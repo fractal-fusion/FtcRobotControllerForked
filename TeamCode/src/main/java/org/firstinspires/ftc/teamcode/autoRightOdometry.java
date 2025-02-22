@@ -1,15 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.Action;
-import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.SleepAction;
-import com.acmerobotics.roadrunner.TranslationalVelConstraint;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
@@ -36,7 +33,7 @@ public class autoRightOdometry extends LinearOpMode {
                         intake.rotateWristToHorizontal(),
                         arm.moveArmToScoreDegrees(),
                         new SleepAction(0.35),
-                        arm.primeScoreSpecimenViperslides()
+                        arm.primeScoreSpecimenViperslidesFromAboveBar()
                 ))
 
                 //show to human player where all the specimens should be placed
@@ -54,7 +51,7 @@ public class autoRightOdometry extends LinearOpMode {
 
                 //raise viperslides to score the specimen, then open claw and deextend viperslides and move arm down
                 .stopAndAdd(new SequentialAction(
-                        arm.scoreSpecimenViperslides(),
+                        arm.scoreSpecimenViperslidesFromAboveBar(),
                         new SleepAction(0.4),
                         intake.openClaw()
 //                        arm.retractViperslides()
@@ -97,7 +94,7 @@ public class autoRightOdometry extends LinearOpMode {
                 //score second specimen
                 .strafeToLinearHeading(new Vector2d(-3 ,scorespecimeny + 0.2), Math.toRadians(90))
                 .stopAndAdd(new SequentialAction(
-                        arm.scoreSpecimenViperslides(),
+                        arm.scoreSpecimenViperslidesFromAboveBar(),
                         new SleepAction(0.38),
                         intake.openClaw(),
 //                        new SleepAction(0.3),
@@ -120,7 +117,7 @@ public class autoRightOdometry extends LinearOpMode {
                 //score third specimen
                 .strafeToLinearHeading(new Vector2d(-5 ,scorespecimeny + 1.6), Math.toRadians(90))
                 .stopAndAdd(new SequentialAction(
-                        arm.scoreSpecimenViperslides(),
+                        arm.scoreSpecimenViperslidesFromAboveBar(),
                         new SleepAction(0.38),
                         intake.openClaw(),
 //                        new SleepAction(0.3),
