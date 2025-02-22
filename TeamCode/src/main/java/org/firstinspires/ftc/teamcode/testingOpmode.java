@@ -5,13 +5,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name="Testing Opmode", group="Robot")
 public class testingOpmode extends LinearOpMode {
-    //initialize objects
-    Arm arm = new Arm(this);
-    Intake intake = new Intake(this);
-    Drivetrain drivetrain = new Drivetrain(this);
-
     @Override
     public void runOpMode() throws InterruptedException {
+
+        //initialize objects
+        Arm arm = new Arm(this);
+        Intake intake = new Intake(this);
+        Drivetrain drivetrain = new Drivetrain(this);
 
         //telemetry to show the robot is initialized
         telemetry.addLine("Robot Ready.");
