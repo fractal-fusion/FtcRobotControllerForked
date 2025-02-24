@@ -24,8 +24,11 @@ public class testingOpmode extends LinearOpMode {
             drivetrain.drive(gamepad1);
 
             arm.controlArm(gamepad2);
+            arm.controlViperslides(gamepad2);
             intake.updateGamepad(gamepad2);
             intake.testPivot(gamepad2);
+            intake.toggleClaw(gamepad2);
+            intake.controlWrist(gamepad2);
         }
     }
 }
