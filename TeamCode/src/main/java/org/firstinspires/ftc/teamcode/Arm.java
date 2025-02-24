@@ -79,7 +79,7 @@ public class    Arm {
     //define preset positions of the arm.
     public static double clearBarrierDegrees = 15.0;
     public static double scoreDegrees = 72.0;
-    public static double scoreSpecimenDegrees = 79.972;
+    public static double scoreSpecimenDegrees = 85;
     public static double hangExtendedDegrees = 100.0;
     public static double hangClimbDegrees = 6.0;
     public static double collectionDegrees = 2.0;
