@@ -45,6 +45,7 @@ public class Intake {
 
     public static double pivotDownPos = 0.0;
     public static double pivotStraightPos = 0.35;
+    public static double pivotScoreSpecimenPosition = 0.6;
     public static double pivotUprightPos = pivotPositionMax;
 
     //opmode variable
@@ -133,7 +134,7 @@ public class Intake {
         }
 
         opMode.telemetry.addData("pivot position,", pivot.getPosition());
-        opMode.telemetry.update();
+//        opMode.telemetry.update();
 
         pivotPosition = clampDouble(pivotPosition, 0, pivotPositionMax);
         pivot.setPosition(pivotPosition);
