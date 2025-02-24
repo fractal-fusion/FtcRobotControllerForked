@@ -54,7 +54,7 @@ public class autoRightOdometrySpline extends LinearOpMode {
                 //go to front of leftmost sample
                 .setTangent(Math.toRadians(0))
                 .splineTo(new Vector2d(27.7, -40.7), Math.toRadians(0))
-                .splineTo(new Vector2d(46.8, -10.3), Math.toRadians(0))
+                .splineTo(new Vector2d(49.8, -10.3), Math.toRadians(0))
 
                 .afterTime(5, new ParallelAction(
                         arm.retractViperslides(),
@@ -63,7 +63,7 @@ public class autoRightOdometrySpline extends LinearOpMode {
 
                 //start push leftmost sample into observation zone
                 .setReversed(true)
-                .splineTo(new Vector2d(46.8, -58.5), Math.toRadians(270))
+                .splineTo(new Vector2d(49.8, -55.5), Math.toRadians(270))
                 .setReversed(false)
 
                 //go to front of middle sample
@@ -72,7 +72,7 @@ public class autoRightOdometrySpline extends LinearOpMode {
 
                 //push middle sample into the observation zone
                 .setTangent(Math.toRadians(270))
-                .splineTo(new Vector2d(57.1, -58.5), Math.toRadians(270))
+                .splineTo(new Vector2d(57.1, -55.5), Math.toRadians(270))
 
 
                 .build();
