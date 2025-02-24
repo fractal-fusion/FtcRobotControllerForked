@@ -49,7 +49,9 @@ public class MeepMeepTesting {
                 .setTangent(Math.toRadians(270))
                 .splineTo(new Vector2d(57.1, -55.5), Math.toRadians(270))
 
-
+                .splineTo(new Vector2d(57.1, -60.5), Math.toRadians(270), new TranslationalVelConstraint(30))
+                //score first specimen
+                .strafeToLinearHeading(new Vector2d(-3 ,scorespecimeny + 0.5), Math.toRadians(270))
 
 
 

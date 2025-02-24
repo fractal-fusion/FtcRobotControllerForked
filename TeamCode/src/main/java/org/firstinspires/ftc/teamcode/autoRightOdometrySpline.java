@@ -3,8 +3,10 @@ package org.firstinspires.ftc.teamcode;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.ProfileAccelConstraint;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.SleepAction;
+import com.acmerobotics.roadrunner.TranslationalVelConstraint;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -31,7 +33,8 @@ public class autoRightOdometrySpline extends LinearOpMode {
                 //close claw and power wrist
                 .stopAndAdd(new ParallelAction(
                         intake.closeClaw(),
-                        intake.rotateWristToHorizontal()
+                        intake.rotateWristToHorizontal(),
+                        intake.rotatePivotDown()
                 ))
 
                 //move the arm to the correct position to score the preloaded specimen
@@ -56,9 +59,9 @@ public class autoRightOdometrySpline extends LinearOpMode {
                 .splineTo(new Vector2d(27.7, -40.7), Math.toRadians(0))
                 .splineTo(new Vector2d(49.8, -10.3), Math.toRadians(0))
 
-                .afterTime(5, new ParallelAction(
+                .afterTime(2, new ParallelAction(
                         arm.retractViperslides(),
-                        arm.moveArmtoRestPosition()
+                        arm.moveArmToPrimeCollectionDegrees()
                 ))
 
                 //start push leftmost sample into observation zone
@@ -72,7 +75,23 @@ public class autoRightOdometrySpline extends LinearOpMode {
 
                 //push middle sample into the observation zone
                 .setTangent(Math.toRadians(270))
-                .splineTo(new Vector2d(57.1, -55.5), Math.toRadians(270))
+                .splineTo(new Vector2d(57.1, -48.5), Math.toRadians(270))
+
+                //prepare for collection of the first specimen
+                .afterTime(0, new ParallelAction(
+                        intake.rotatePivotStraight(),
+                        intake.openClaw(),
+                        arm.primeScoreSpecimenViperslidesFromBelowBar()
+                ))
+
+                //slowly move in and collect first specimen
+                .splineTo(new Vector2d(57.1, -50.5), Math.toRadians(270), new TranslationalVelConstraint(30))
+
+                .stopAndAdd(new SequentialAction(
+                        intake.closeClaw(),
+                        new SleepAction(0.4),
+                        intake.rotatePivotUpright()
+                ))
 
 
                 .build();

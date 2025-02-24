@@ -29,11 +29,10 @@ public class autoTest extends LinearOpMode {
                         arm.extendViperslides(),
                         arm.retractViperslides(),
                         intake.openClaw(),
-                        new SleepAction(0.3),
-                        arm.moveArmToPrimeCollectionDegrees(),
+                        new SleepAction(0.3),                        arm.moveArmToPrimeCollectionDegrees(),
                         intake.closeClaw(),
                         new SleepAction(0.3),
-                        arm.moveArmToObtuseDegrees(),
+                        arm.moveArmToScoreSpecimenDegrees(),
                         new SleepAction(0.3)
                 ))
                 .build();

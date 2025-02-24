@@ -303,10 +303,10 @@ public class    Arm {
         };
     }
 
-    public Action moveArmToObtuseDegrees() {
+    public Action moveArmToScoreSpecimenDegrees() {
         return new Action() {
             private boolean initialized = false;
-            private int target = (int) (Arm.hangExtendedDegrees * encoderTicksPerDegrees);
+            private int target = (int) (Arm.scoreSpecimenDegrees * encoderTicksPerDegrees);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
@@ -336,7 +336,7 @@ public class    Arm {
     public Action moveArmToPrimeCollectionDegrees() {
         return new Action() {
             private boolean initialized = false;
-            private int target = (int) (13 * encoderTicksPerDegrees);
+            private int target = (int) (Arm.collectionDegrees * encoderTicksPerDegrees);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
@@ -351,6 +351,7 @@ public class    Arm {
 
                     initialized = true;
                 }
+                double deadband = 5;
                 if (armRotationLeft.getCurrentPosition() > target + deadband || armRotationLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
