@@ -28,36 +28,53 @@ public class autoRightOdometrySpline extends LinearOpMode {
         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
 
         Action auto = drive.actionBuilder(initialPose)
-                //close claw
+                //close claw and power wrist
                 .stopAndAdd(new ParallelAction(
                         intake.closeClaw(),
                         intake.rotateWristToHorizontal()
                 ))
 
+                //move the arm to the correct position to score the preloaded specimen
                 .afterTime(0.1, new ParallelAction(
                         arm.moveArmToScoreDegrees(),
                         arm.primeScoreSpecimenViperslidesFromAboveBar()
                 ))
-                //go to specimen bar and score first specimen
+
+                //go to specimen bar to score preloaded specimen
                 .strafeToLinearHeading(new Vector2d(-5, scorespecimeny), Math.toRadians(90))
                 .waitSeconds(0.3)
 
-                //raise viperslides to score the specimen, then open claw and deextend viperslides and move arm down
+                //raise viperslides to score the preloaded specimen, then open claw
                 .stopAndAdd(new SequentialAction(
                         arm.scoreSpecimenViperslidesFromAboveBar(),
                         new SleepAction(0.4),
                         intake.openClaw()
-//                        arm.retractViperslides()
-//                        arm.moveArmtoRestPosition(),
-//                        new SleepAction(1.8)
                 ))
 
-                .strafeTo(new Vector2d(0,-43))
+                //go to front of leftmost sample
+                .setTangent(Math.toRadians(0))
+                .splineTo(new Vector2d(27.7, -40.7), Math.toRadians(0))
+                .splineTo(new Vector2d(46.8, -10.3), Math.toRadians(0))
 
-                .stopAndAdd(new SequentialAction(
+                .afterTime(5, new ParallelAction(
                         arm.retractViperslides(),
                         arm.moveArmtoRestPosition()
                 ))
+
+                //start push leftmost sample into observation zone
+                .setReversed(true)
+                .splineTo(new Vector2d(46.8, -58.5), Math.toRadians(270))
+                .setReversed(false)
+
+                //go to front of middle sample
+                .setTangent(Math.toRadians(150))
+                .splineTo(new Vector2d(57.1, -13.4), Math.toRadians(330))
+
+                //push middle sample into the observation zone
+                .setTangent(Math.toRadians(270))
+                .splineTo(new Vector2d(57.1, -58.5), Math.toRadians(270))
+
+
                 .build();
 
         waitForStart();
