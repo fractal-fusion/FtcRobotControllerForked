@@ -32,9 +32,9 @@ public class autoRightOdometrySpline extends LinearOpMode {
         Action auto = drive.actionBuilder(initialPose)
                 //close claw and power wrist
                 .stopAndAdd(new ParallelAction(
+                        intake.rotatePivotDown(),
                         intake.closeClaw(),
-                        intake.rotateWristToHorizontal(),
-                        intake.rotatePivotDown()
+                        intake.rotateWristToHorizontal()
                 ))
 
                 //move the arm to the correct position to score the preloaded specimen
@@ -61,7 +61,8 @@ public class autoRightOdometrySpline extends LinearOpMode {
 
                 .afterTime(2, new ParallelAction(
                         arm.retractViperslides(),
-                        arm.moveArmToPrimeCollectionDegrees()
+                        arm.moveArmToPrimeCollectionDegrees(),
+                        arm.primeScoreSpecimenViperslidesFromBelowBar()
                 ))
 
                 //start push leftmost sample into observation zone
@@ -73,19 +74,19 @@ public class autoRightOdometrySpline extends LinearOpMode {
                 .setTangent(Math.toRadians(150))
                 .splineTo(new Vector2d(57.1, -13.4), Math.toRadians(330))
 
-                //push middle sample into the observation zone
-                .setTangent(Math.toRadians(270))
-                .splineTo(new Vector2d(57.1, -48.5), Math.toRadians(270))
-
                 //prepare for collection of the first specimen
-                .afterTime(0, new ParallelAction(
+                .afterTime(0.1, new ParallelAction(
                         intake.rotatePivotStraight(),
                         intake.openClaw(),
                         arm.primeScoreSpecimenViperslidesFromBelowBar()
                 ))
 
+                //push middle sample into the observation zone
+                .setTangent(Math.toRadians(270))
+                .splineTo(new Vector2d(57.1, -48.5), Math.toRadians(270))
+
                 //slowly move in and collect first specimen
-                .splineTo(new Vector2d(57.1, -50.5), Math.toRadians(270), new TranslationalVelConstraint(30))
+                .splineTo(new Vector2d(57.1, -49.5), Math.toRadians(270), new TranslationalVelConstraint(30))
 
                 .stopAndAdd(new SequentialAction(
                         intake.closeClaw(),
@@ -93,6 +94,12 @@ public class autoRightOdometrySpline extends LinearOpMode {
                         intake.rotatePivotUpright()
                 ))
 
+                .afterTime(0.1, new ParallelAction(
+                        arm.moveArmToScoreSpecimenDegrees()
+                ))
+
+                //score first specimen
+                .strafeToLinearHeading(new Vector2d(0, scorespecimeny), Math.toRadians(270))
 
                 .build();
 

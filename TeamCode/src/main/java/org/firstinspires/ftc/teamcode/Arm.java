@@ -537,7 +537,7 @@ public class    Arm {
         return new Action() {
             private boolean initialized = false;
             //deextend to 4 inches to score the specimen on the high rung
-            private int target = (int) (3.5 * encoderTicksPerInches);
+            private int target = (int) (3 * encoderTicksPerInches);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {

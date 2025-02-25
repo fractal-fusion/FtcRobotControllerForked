@@ -45,7 +45,7 @@ public class Intake {
 
     public static double pivotDownPos = 0.0;
     public static double pivotStraightPos = 0.35;
-    public static double pivotUprightPos = pivotPositionMax;
+    public static double pivotUprightPos = 0.7;
 
     //opmode variable
     private OpMode opMode;

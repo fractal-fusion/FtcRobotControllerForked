@@ -47,11 +47,11 @@ public class MeepMeepTesting {
 
                 //push middle sample into the observation zone
                 .setTangent(Math.toRadians(270))
-                .splineTo(new Vector2d(57.1, -55.5), Math.toRadians(270))
+                .splineTo(new Vector2d(57.1, -48.8), Math.toRadians(270))
 
-                .splineTo(new Vector2d(57.1, -60.5), Math.toRadians(270), new TranslationalVelConstraint(30))
+                .splineTo(new Vector2d(57.1, -50.5), Math.toRadians(270), new TranslationalVelConstraint(30))
                 //score first specimen
-                .strafeToLinearHeading(new Vector2d(-3 ,scorespecimeny + 0.5), Math.toRadians(270))
+                .strafeToLinearHeading(new Vector2d(0 ,scorespecimeny + 0.5), Math.toRadians(270))
 
 
 
