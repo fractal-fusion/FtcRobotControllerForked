@@ -313,8 +313,8 @@ public class    Arm {
                     armRotationLeft.setTargetPosition(target);
                     armRotationRight.setTargetPosition(target);
 
-                    armRotationLeft.setPower(0.4);
-                    armRotationRight.setPower(0.4);
+                    armRotationLeft.setPower(0.7);
+                    armRotationRight.setPower(0.7);
 
                     armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -336,7 +336,7 @@ public class    Arm {
     public Action moveArmToPrimeCollectionDegrees() {
         return new Action() {
             private boolean initialized = false;
-            private int target = (int) (Arm.collectionDegrees * encoderTicksPerDegrees);
+            private int target = (int) (Arm.clearBarrierDegrees * encoderTicksPerDegrees);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
@@ -351,7 +351,6 @@ public class    Arm {
 
                     initialized = true;
                 }
-                double deadband = 5;
                 if (armRotationLeft.getCurrentPosition() > target + deadband || armRotationLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
