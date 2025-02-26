@@ -51,7 +51,9 @@ public class MeepMeepTesting {
 
                 .splineTo(new Vector2d(57.1, -50.5), Math.toRadians(270), new TranslationalVelConstraint(30))
                 //score first specimen
-                .strafeToLinearHeading(new Vector2d(0 ,scorespecimeny + 0.5), Math.toRadians(270))
+                .setTangent(Math.toRadians(180))
+                .splineTo(new Vector2d(0 ,scorespecimeny - 5), Math.toRadians(180))
+                .strafeToLinearHeading(new Vector2d(0 ,scorespecimeny), Math.toRadians(270))
 
 
 

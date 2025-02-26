@@ -303,7 +303,36 @@ public class    Arm {
         };
     }
 
-    public Action moveArmToScoreSpecimenDegrees() {
+    public Action moveArmToScoreSpecimenFromAboveDegrees() {
+        return new Action() {
+            private boolean initialized = false;
+            private int target = (int) (74 * encoderTicksPerDegrees);
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                if (!initialized) {
+                    armRotationLeft.setTargetPosition(target);
+                    armRotationRight.setTargetPosition(target);
+
+                    armRotationLeft.setPower(0.7);
+                    armRotationRight.setPower(0.7);
+
+                    armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                    initialized = true;
+                }
+                double deadband = 10.0;
+                if (armRotationLeft.getCurrentPosition() > target + deadband || armRotationLeft.getCurrentPosition() < target - deadband) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        };
+    }
+
+    public Action moveArmToScoreSpecimenFromUnderDegrees() {
         return new Action() {
             private boolean initialized = false;
             private int target = (int) (Arm.scoreSpecimenDegrees * encoderTicksPerDegrees);
@@ -313,8 +342,8 @@ public class    Arm {
                     armRotationLeft.setTargetPosition(target);
                     armRotationRight.setTargetPosition(target);
 
-                    armRotationLeft.setPower(0.7);
-                    armRotationRight.setPower(0.7);
+                    armRotationLeft.setPower(0.25);
+                    armRotationRight.setPower(0.25);
 
                     armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -336,7 +365,7 @@ public class    Arm {
     public Action moveArmToPrimeCollectionDegrees() {
         return new Action() {
             private boolean initialized = false;
-            private int target = (int) (Arm.clearBarrierDegrees * encoderTicksPerDegrees);
+            private int target = (int) (15 * encoderTicksPerDegrees);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
@@ -351,6 +380,7 @@ public class    Arm {
 
                     initialized = true;
                 }
+                double deadband = 30;
                 if (armRotationLeft.getCurrentPosition() > target + deadband || armRotationLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
@@ -537,7 +567,7 @@ public class    Arm {
         return new Action() {
             private boolean initialized = false;
             //deextend to 4 inches to score the specimen on the high rung
-            private int target = (int) (3 * encoderTicksPerInches);
+            private int target = (int) (2.5 * encoderTicksPerInches);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
@@ -567,7 +597,7 @@ public class    Arm {
             private boolean initialized = false;
             //extend 13 inches to score the specimen on the high rung
             //TODO: tune this aswell
-            private int target = (int) (13 * encoderTicksPerInches);
+            private int target = (int) (8.5 * encoderTicksPerInches);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
@@ -626,7 +656,7 @@ public class    Arm {
             private boolean initialized = false;
             //11 inches to touch the high rung but not score the specimen
             //TODO: tune this value
-            private int target = (int) (8.5 * encoderTicksPerInches);
+            private int target = (int) (3.5 * encoderTicksPerInches);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {

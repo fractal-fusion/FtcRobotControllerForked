@@ -33,8 +33,9 @@ public class autoTest extends LinearOpMode {
                         arm.moveArmToPrimeCollectionDegrees(),
                         intake.closeClaw(),
                         new SleepAction(0.3),
-                        arm.moveArmToScoreSpecimenDegrees(),
-                        new SleepAction(0.3)
+                        arm.moveArmToScoreSpecimenFromUnderDegrees(),
+                        new SleepAction(0.3),
+                        intake.rotatePivotUpright()
                 ))
                 .build();
 

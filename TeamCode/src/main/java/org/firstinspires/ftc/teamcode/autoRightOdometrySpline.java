@@ -3,10 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
-import com.acmerobotics.roadrunner.ProfileAccelConstraint;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.SleepAction;
-import com.acmerobotics.roadrunner.TranslationalVelConstraint;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -20,7 +18,7 @@ public class autoRightOdometrySpline extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         double tilelength = 24;
         double collectspecimenx = tilelength + 4, collectspecimeny = -70;
-        double scorespecimeny = -31.5;
+        double scorespecimeny = -29.5;
 
         Intake intake = new Intake(this);
         Arm arm = new Arm(this);
@@ -39,12 +37,12 @@ public class autoRightOdometrySpline extends LinearOpMode {
 
                 //move the arm to the correct position to score the preloaded specimen
                 .afterTime(0.1, new ParallelAction(
-                        arm.moveArmToScoreDegrees(),
+                        arm.moveArmToScoreSpecimenFromAboveDegrees(),
                         arm.primeScoreSpecimenViperslidesFromAboveBar()
                 ))
 
                 //go to specimen bar to score preloaded specimen
-                .strafeToLinearHeading(new Vector2d(-5, scorespecimeny), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(-5, scorespecimeny+1), Math.toRadians(90))
                 .waitSeconds(0.3)
 
                 //raise viperslides to score the preloaded specimen, then open claw
@@ -57,13 +55,11 @@ public class autoRightOdometrySpline extends LinearOpMode {
                 //go to front of leftmost sample
                 .setTangent(Math.toRadians(0))
                 .splineTo(new Vector2d(27.7, -40.7), Math.toRadians(0))
-                .splineTo(new Vector2d(49.8, -10.3), Math.toRadians(0))
-
-                .afterTime(2, new ParallelAction(
+                .afterTime(0.1, new ParallelAction(
                         arm.retractViperslides(),
-                        arm.moveArmToPrimeCollectionDegrees(),
-                        arm.primeScoreSpecimenViperslidesFromBelowBar()
+                        arm.moveArmToPrimeCollectionDegrees()
                 ))
+                .splineTo(new Vector2d(49.8, -10.3), Math.toRadians(0))
 
                 //start push leftmost sample into observation zone
                 .setReversed(true)
@@ -75,7 +71,7 @@ public class autoRightOdometrySpline extends LinearOpMode {
                 .splineTo(new Vector2d(57.1, -13.4), Math.toRadians(330))
 
                 //prepare for collection of the first specimen
-                .afterTime(0.1, new ParallelAction(
+                .stopAndAdd(new ParallelAction(
                         intake.rotatePivotStraight(),
                         intake.openClaw(),
                         arm.primeScoreSpecimenViperslidesFromBelowBar()
@@ -83,10 +79,7 @@ public class autoRightOdometrySpline extends LinearOpMode {
 
                 //push middle sample into the observation zone
                 .setTangent(Math.toRadians(270))
-                .splineTo(new Vector2d(57.1, -48.5), Math.toRadians(270))
-
-                //slowly move in and collect first specimen
-                .splineTo(new Vector2d(57.1, -49.5), Math.toRadians(270), new TranslationalVelConstraint(30))
+                .splineTo(new Vector2d(57.1, -52.5), Math.toRadians(270))
 
                 .stopAndAdd(new SequentialAction(
                         intake.closeClaw(),
@@ -95,11 +88,21 @@ public class autoRightOdometrySpline extends LinearOpMode {
                 ))
 
                 .afterTime(0.1, new ParallelAction(
-                        arm.moveArmToScoreSpecimenDegrees()
+                        arm.moveArmToScoreSpecimenFromUnderDegrees()
                 ))
 
                 //score first specimen
+                .setTangent(Math.toRadians(180))
+                .splineTo(new Vector2d(-3,scorespecimeny - 5), Math.toRadians(180))
                 .strafeToLinearHeading(new Vector2d(0, scorespecimeny), Math.toRadians(270))
+
+                .waitSeconds(2)
+
+                .stopAndAdd(new SequentialAction(
+                        arm.scoreSpecimenViperslidesFromBelowBar(),
+                        intake.openClaw(),
+                        new SleepAction(0.4)
+                ))
 
                 .build();
 
