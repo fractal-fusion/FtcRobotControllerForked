@@ -310,7 +310,7 @@ public class    Arm {
     public Action moveArmToScoreSpecimenFromAboveDegrees() {
         return new Action() {
             private boolean initialized = false;
-            private int target = (int) (74 * encoderTicksPerDegrees);
+            private int target = (int) (71 * encoderTicksPerDegrees);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
@@ -369,22 +369,22 @@ public class    Arm {
     public Action moveArmToPrimeCollectionDegrees() {
         return new Action() {
             private boolean initialized = false;
-            private int target = (int) (18.5 * encoderTicksPerDegrees);
+            private int target = (int) (18.3 * encoderTicksPerDegrees);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
                     armRotationLeft.setTargetPosition(target);
                     armRotationRight.setTargetPosition(target);
 
-                    armRotationLeft.setPower(0.4);
-                    armRotationRight.setPower(0.4);
+                    armRotationLeft.setPower(0.7);
+                    armRotationRight.setPower(0.7);
 
                     armRotationLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                     armRotationRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
                     initialized = true;
                 }
-                double deadband = 20;
+                double deadband = 30;
                 if (armRotationLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
@@ -663,7 +663,7 @@ public class    Arm {
             private boolean initialized = false;
             //11 inches to touch the high rung but not score the specimen
             //TODO: tune this value
-            private int target = (int) (5.5 * encoderTicksPerInches);
+            private int target = (int) (4 * encoderTicksPerInches);
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
