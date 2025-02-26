@@ -77,7 +77,7 @@ public class    Arm {
                                                 / (pulleyDiameterInches * Math.PI);
 
     //define preset positions of the arm.
-    public static double clearBarrierDegrees = 15.0;
+    public static double clearBarrierDegrees = 17.0;
     public static double scoreDegrees = 72.0;
     public static double scoreSpecimenDegrees = 85;
     public static double hangExtendedDegrees = 100.0;
@@ -243,6 +243,10 @@ public class    Arm {
         if (rotationAngle > 90) {
             armRotationLeft.setPower(0.3);
             armRotationRight.setPower(0.3);
+        }
+        else if (armRotationLeft.getCurrentPosition() < clearBarrierDegrees * encoderTicksPerDegrees) {
+            armRotationLeft.setPower(0.9);
+            armRotationRight.setPower(0.9);
         }
         else {
             armRotationLeft.setPower(0.7);
@@ -582,6 +586,7 @@ public class    Arm {
 
                     initialized = true;
                 }
+                double deadband = 10.0;
                 if (viperslideLeft.getCurrentPosition() > target + deadband || viperslideLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
@@ -612,6 +617,7 @@ public class    Arm {
 
                     initialized = true;
                 }
+                double deadband = 10.0;
                 if (viperslideLeft.getCurrentPosition() > target + deadband || viperslideLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
@@ -641,6 +647,7 @@ public class    Arm {
 
                     initialized = true;
                 }
+                double deadband = 10.0;
                 if (viperslideLeft.getCurrentPosition() > target + deadband || viperslideLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
@@ -671,6 +678,7 @@ public class    Arm {
 
                     initialized = true;
                 }
+                double deadband = 10.0;
                 if (viperslideLeft.getCurrentPosition() > target + deadband || viperslideLeft.getCurrentPosition() < target - deadband) {
                     return true;
                 }
